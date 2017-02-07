@@ -1,0 +1,104 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.goes.uece.model;
+
+
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+
+/**
+ *
+ * @author italo
+ */
+public class ObjectDAO {
+    
+   SessionFactory sessionFactory;
+
+    public ObjectDAO() {
+         try {
+           setUp();
+       } catch (Exception ex) {
+           ex.printStackTrace();
+       }    
+    }
+   
+   
+   
+   protected void setUp() throws Exception {
+	// A SessionFactory is set up once for an application!
+	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+			.configure() // configures settings from hibernate.cfg.xml
+			.build();
+	try {
+		sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+	}
+	catch (Exception e) {
+		// The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
+		// so destroy it manually.
+		StandardServiceRegistryBuilder.destroy( registry );
+	}
+}
+    
+    public void save(Object p) {
+      
+        Session s = sessionFactory.openSession();
+        s.beginTransaction();
+        s.persist(p);
+        s.getTransaction().commit();
+        s.close();
+    }
+
+   
+    
+    public List getContatos() {
+        SessionFactory sessionFactory = new Configuration().configure()
+                .buildSessionFactory();
+        Session s = sessionFactory.openSession();
+        Query query = s.createQuery("from Contato");
+        List contatos = query.list();
+        s.close();
+        return contatos;
+    }
+
+    public List getGrupos() {
+        SessionFactory sessionFactory = new Configuration().configure()
+                .buildSessionFactory();
+        Session s = sessionFactory.openSession();
+        Query query = s.createQuery("from Grupo");
+        List grupos = query.list();
+        s.close();
+        return grupos;
+    }
+    
+        public List getMensagensRecebidas() {
+        SessionFactory sessionFactory = new Configuration().configure()
+                .buildSessionFactory();
+        Session s = sessionFactory.openSession();
+        Query query = s.createQuery("from MensagemRecebida");
+        List mensagens = query.list();
+        s.close();
+        return mensagens;
+    }
+    
+    
+
+    public void delete(Object object) {
+        SessionFactory sessionFactory = new Configuration().configure()
+                .buildSessionFactory();
+        Session s = sessionFactory.openSession();
+        s.beginTransaction();
+        s.delete(object);
+        s.getTransaction().commit();
+        s.close();
+    }
+
+}

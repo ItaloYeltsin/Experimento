@@ -16,16 +16,16 @@
 
                 <h:panelGrid columns="2" cellpadding="5">
                     <p:outputLabel for="email" value="Email:" />
-                    <p:inputText id="email" value="" required="true" label="Email"/>
+                    <p:inputText id="email" value="#{login.email}" required="true" label="Email"/>
                    
                     <p:outputLabel for="password" value="Password:" />
-                    <p:inputText id="password" value="" label="password"/>
+                    <p:inputText id="password" value="#{login.password}" label="password"/>
                 
                     
                 </h:panelGrid>
                 <h:panelGrid columns="1" style="width: 100%" cellspacing="10">
-                    <p:commandButton value="Entrar" style="width: 100%" update="panel" icon="fa-sign-in" />
-                    <p:commandButton value="Entrar" style="width: 100%" update="panel" icon="fa-sign-in" />
+                    <p:commandButton value="Entrar" style="width: 100%" actionListener= "#{login.validate}" update="panel" icon="fa-sign-in" />
+                    <p:commandButton value="Create new user" style="width: 100%" update="panel" icon="fa-sign-in" />
                 </h:panelGrid>
                 <p:link value="Esqueceu a senha?" style="width: 100%; margin: auto; text-align: center"/>
             </p:panel>

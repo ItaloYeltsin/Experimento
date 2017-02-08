@@ -7,6 +7,8 @@ package br.goes.uece.model;
 
 
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -57,40 +59,28 @@ public class ObjectDAO {
         s.close();
     }
 
-   
     
-    public List getContatos() {
-        SessionFactory sessionFactory = new Configuration().configure()
-                .buildSessionFactory();
+    public User getUser(String email, String password) {
         Session s = sessionFactory.openSession();
-        Query query = s.createQuery("from Contato");
-        List contatos = query.list();
-        s.close();
-        return contatos;
+        EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
+        User user = null;
+        try{
+            user = entityManager.createQuery(
+            "select u " +
+            "from User u " +
+            "where " +
+            "    u.email = :email and " +
+            "    u.password = :password",
+            User.class)
+            .setParameter( "email", email)
+                .setParameter( "password", password)
+                    .getSingleResult();
+        }catch(NoResultException e) {
+            
+        }
+         return user;
     }
-
-    public List getGrupos() {
-        SessionFactory sessionFactory = new Configuration().configure()
-                .buildSessionFactory();
-        Session s = sessionFactory.openSession();
-        Query query = s.createQuery("from Grupo");
-        List grupos = query.list();
-        s.close();
-        return grupos;
-    }
-    
-        public List getMensagensRecebidas() {
-        SessionFactory sessionFactory = new Configuration().configure()
-                .buildSessionFactory();
-        Session s = sessionFactory.openSession();
-        Query query = s.createQuery("from MensagemRecebida");
-        List mensagens = query.list();
-        s.close();
-        return mensagens;
-    }
-    
-    
-
+ 
     public void delete(Object object) {
         SessionFactory sessionFactory = new Configuration().configure()
                 .buildSessionFactory();

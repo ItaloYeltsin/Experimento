@@ -21,4 +21,12 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
+    <filter>
+      <filter-name>LoginFilter</filter-name>
+      <filter-class>br.uece.goes.controller.LoginFilter</filter-class>    
+    </filter>
+    <filter-mapping>
+      <filter-name>LoginFilter</filter-name>
+      <url-pattern>/restricted/*</url-pattern>
+    </filter-mapping>
 </web-app>

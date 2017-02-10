@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.goes.uece.model;
+package br.uece.goes.model;
 
 
 import java.util.List;
@@ -46,6 +46,7 @@ public class ObjectDAO {
 	catch (Exception e) {
 		// The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
 		// so destroy it manually.
+                e.printStackTrace();
 		StandardServiceRegistryBuilder.destroy( registry );
 	}
 }

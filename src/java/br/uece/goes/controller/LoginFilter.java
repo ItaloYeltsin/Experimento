@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.goes.uece.controller;
+package br.uece.goes.controller;
   import java.io.IOException;
-  import br.goes.uece.model.User;
+  import br.uece.goes.model.User;
   import javax.servlet.Filter;
   import javax.servlet.FilterChain;
   import javax.servlet.FilterConfig;
@@ -29,14 +29,14 @@ package br.goes.uece.controller;
                HttpSession sess = ((HttpServletRequest) request).getSession(false);
                
                if (sess != null){
-                     user = (User) sess.getAttribute("usuarioLogado");
+                     user = (User) sess.getAttribute("loggedUser");
                }      
    
                      if (user == null) {
                               String contextPath = ((HttpServletRequest) request)
                                                  .getContextPath();
                               ((HttpServletResponse) response).sendRedirect(contextPath
-                                                 + "/index.xhtml");
+                                                 + "faces/index.xhtml");
                      } else {
                               chain.doFilter(request, response);
                      }

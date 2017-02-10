@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.goes.uece.controller;
+package br.uece.goes.controller;
 
-import br.goes.uece.model.ObjectDAO;
-import br.goes.uece.model.User;
+import br.uece.goes.model.ObjectDAO;
+import br.uece.goes.model.User;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -28,6 +28,23 @@ public class Login {
     public Login() {
         dao = new ObjectDAO();
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public ObjectDAO getDao() {
+        return dao;
+    }
+
+    public void setDao(ObjectDAO dao) {
+        this.dao = dao;
+    }
+    
     
     public String getEmail() {
         return email;
@@ -52,7 +69,7 @@ public class Login {
             System.out.print(user.getId());
             FacesContext.getCurrentInstance().getExternalContext()
                     .getSessionMap().put("loggedUser", user);
-            return "/index.xhtml?faces-redirect=true";
+            return "restricted/main.xhtml";
         }
         FacesContext.getCurrentInstance().validationFailed();
         FacesMessage fm = new FacesMessage("Email and password do not match");
@@ -60,6 +77,11 @@ public class Login {
         FacesContext.getCurrentInstance().addMessage("Fail to login", fm);
                 
         return "";
+    }
+    
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/index.xhtml";
     }
     
 }

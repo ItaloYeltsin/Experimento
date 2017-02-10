@@ -1,6 +1,6 @@
 
-import br.goes.uece.model.ObjectDAO;
-import br.goes.uece.model.User;
+import br.uece.goes.model.ObjectDAO;
+import br.uece.goes.model.User;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,9 +17,9 @@ public class Main {
     public static void main(String [] asas) {
         ObjectDAO dao = new ObjectDAO();
         User u = new User();
-        u.setName("Wwqwqw");
+        u.setName("Italo Yeltsin Medeiros Bruno");
         u.setEmail("br.yeltsin@gmail.com");
-        u.setPassword("ewewe");
+        u.setPassword("123");
         dao.save(u);
     }
 }

@@ -19,15 +19,15 @@
                     <p:inputText id="email" value="#{login.email}" required="true" label="Email"/>
                    
                     <p:outputLabel for="password" value="Password:" />
-                    <p:inputText id="password" value="#{login.password}" label="password"/>
+                    <p:password id="password" value="#{login.password}" label="password"/>
                 
                     
                 </h:panelGrid>
                 <h:panelGrid columns="1" style="width: 100%" cellspacing="10">
                     <p:commandButton value="Entrar" style="width: 100%" actionListener= "#{login.validate}" update="panel" icon="fa-sign-in" />
-                    <p:commandButton value="Create new user" style="width: 100%" update="panel" icon="fa-sign-in" />
+                    <p:commandButton value="Create new user" style="width: 100%" action= "register?faces-redirect=true" update="panel" icon="fa-sign-in" immediate="true"/>
                 </h:panelGrid>
-                <p:link value="Esqueceu a senha?" style="width: 100%; margin: auto; text-align: center"/>
+                <p:link value="Esqueceu a senha?" outcome="recoverPassword" style="width: 100%; margin: auto; text-align: center"/>
             </p:panel>
 
         </h:form>

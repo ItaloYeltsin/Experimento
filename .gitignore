@@ -4,10 +4,11 @@ build/
 nbbuild/
 dist/
 nbdist/
+nbproject/
 nbactions.xml
 nb-configuration.xml
 build.xml
-nbproject/
+
 
 
 # Class Files #

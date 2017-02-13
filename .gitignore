@@ -4,8 +4,12 @@ build/
 nbbuild/
 dist/
 nbdist/
+nbproject/
 nbactions.xml
 nb-configuration.xml
+build.xml
+
+
 
 # Class Files #
 *.class

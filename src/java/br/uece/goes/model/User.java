@@ -25,14 +25,9 @@ public class User implements Serializable {
     private String email;
     private String password;
     private String name;
-    private ObjectDAO dao;
     
     
-    public User() {
-       dao = new ObjectDAO();
-    }
-    
-    public Long getId() {
+     public Long getId() {
         return id;
     }
 
@@ -90,14 +85,5 @@ public class User implements Serializable {
     public String toString() {
         return "br.goes.uece.model.User[ id=" + id + " ]";
     }
-    
-    public String save(){
-        System.out.println("br.goes.uece.model.User.save()");        
-        if(dao.getUser(this.email, this.password)!=this){        
-              dao.save(this);        
-        }
-        
-        return "/index.xhtml?faces-redirect=true";
-    }
-    
+     
 }

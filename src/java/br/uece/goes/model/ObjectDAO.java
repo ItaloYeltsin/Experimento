@@ -59,6 +59,15 @@ public class ObjectDAO {
         s.getTransaction().commit();
         s.close();
     }
+    
+        public void update(Object p) {
+      
+        Session s = sessionFactory.openSession();
+        s.beginTransaction();
+        s.update(p);
+        s.getTransaction().commit();
+        s.close();
+    }
 
     
     public User getUser(String email, String password) {
@@ -81,6 +90,45 @@ public class ObjectDAO {
         }
          return user;
     }
+    
+        public User getUser(String email) {
+        Session s = sessionFactory.openSession();
+        EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
+        User user = null;
+        try{
+            user = entityManager.createQuery(
+            "select u " +
+            "from User u " +
+            "where " +
+            "    u.email = :email",
+            User.class)
+            .setParameter( "email", email)
+                    .getSingleResult();
+        }catch(NoResultException e) {
+            
+        }
+         return user;
+    }
+        
+    
+    public String getPassword(String email) {    
+        Session s = sessionFactory.openSession();
+        EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
+        User user = null;
+        try{
+            user = entityManager.createQuery(
+            "select u " +
+            "from User u " +
+            "where " +
+            "    u.email = :email",
+            User.class)
+            .setParameter( "email", email)
+                    .getSingleResult();
+        }catch(NoResultException e) {
+            
+        }
+         return user.getPassword();  
+    }
  
     public void delete(Object object) {
         SessionFactory sessionFactory = new Configuration().configure()
@@ -91,5 +139,6 @@ public class ObjectDAO {
         s.getTransaction().commit();
         s.close();
     }
+
 
 }

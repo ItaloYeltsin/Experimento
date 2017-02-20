@@ -1,7 +1,0 @@
-*.class
-/bin
-*.csv
-*.csv~
-*.jar
-/instances
-/results

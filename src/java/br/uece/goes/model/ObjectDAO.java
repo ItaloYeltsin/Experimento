@@ -91,7 +91,7 @@ public class ObjectDAO {
          return user;
     }
     
-        public User getUser(String email) {
+    public User getUser(String email) {
         Session s = sessionFactory.openSession();
         EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
         User user = null;
@@ -109,8 +109,7 @@ public class ObjectDAO {
         }
          return user;
     }
-        
-    
+          
     public String getPassword(String email) {    
         Session s = sessionFactory.openSession();
         EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
@@ -140,5 +139,21 @@ public class ObjectDAO {
         s.close();
     }
 
+      public List<Requirement> getAllReq() {
+        Session s = sessionFactory.openSession();
+        EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
+        List<Requirement> reqs = null;
+        try{
+            reqs = entityManager.createQuery(
+            "select u " +
+            "from Requirement u ",
+            Requirement.class)
+                    .getResultList();
+        }catch(NoResultException e) {
+            
+        }
+         return reqs;
+    }  
+    
 
 }

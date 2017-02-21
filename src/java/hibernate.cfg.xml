@@ -44,5 +44,6 @@ Contributor(s):
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name=" hibernate.show_sql">true</property>
     <mapping class="br.uece.goes.model.User"/>
+    <mapping class="br.uece.goes.model.Requirement"/>
   </session-factory>
 </hibernate-configuration>

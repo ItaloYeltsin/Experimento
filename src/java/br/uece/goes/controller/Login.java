@@ -7,6 +7,7 @@ package br.uece.goes.controller;
 
 import br.uece.goes.model.ObjectDAO;
 import br.uece.goes.model.User;
+import br.uece.goes.util.TransformaStringMD5;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -63,13 +64,13 @@ public class Login {
     }
     
     public String validate() {
-        user = dao.getUser(email, password);
+        user = dao.getUser(email,TransformaStringMD5.md5(password));
         
         if(user != null) {
             System.out.print(user.getId());
             FacesContext.getCurrentInstance().getExternalContext()
                     .getSessionMap().put("loggedUser", user);
-            return "restricted/main.xhtml";
+            return "/restricted/main.xhtml";
         }
         FacesContext.getCurrentInstance().validationFailed();
         FacesMessage fm = new FacesMessage("Email and password do not match");
@@ -77,6 +78,20 @@ public class Login {
         FacesContext.getCurrentInstance().addMessage("Fail to login", fm);
                 
         return "";
+    }
+    
+    public String change(String newPassword) {
+      
+        user = dao.getUser(email);
+        
+        user.setPassword(TransformaStringMD5.md5(newPassword));
+        dao.update(user);
+        
+     FacesMessage fm = new FacesMessage("Password Change");   
+     fm.setSeverity(FacesMessage.SEVERITY_INFO);
+     FacesContext.getCurrentInstance().addMessage("Password Changed", fm);
+     
+     return "/restricted/account.xhtml";   
     }
     
     public String logout() {

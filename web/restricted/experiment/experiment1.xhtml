@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"         
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <h:head>
+        <title>Experiment-part1</title>
+    </h:head>
+    
+    <h:body>
+        	
+        <ui:composition template="/restricted/layout/layout.xhtml">
+        
+        <ui:define name="content">
+        <h:form>    
+            <div align="center" >
+                
+                <p:inputText id="txt1" value="#{noInteractiveView.preference}" style="width:32px" />
+                
+                <h:panelGrid columns="3" cellpadding="10">
+                    <p:slider for="txt1" style="width:1000px" />
+                    <p:commandButton  value="Next" action="#{noInteractiveView.execute()}" ajax="false"/>
+                </h:panelGrid>
+                
+                
+                <p:dataTable id="checkboxDT" disabledSelection="true" var="requirement" value="#{noInteractiveView.requirements}" selectionMode="multiple" selection="#{noInteractiveView.selectedRequirements}" rowKey="#{requirement.id}" style="margin: auto; width: 1200px;">
+                    <f:facet name="header">
+                        <p:commandButton process="checkboxDT" icon="ui-icon-search" value="View" oncomplete="PF('selectedReqDialog').show()" />
+                        Requirements:
+                    </f:facet>
+                    <p:column headerText="Id" style="width:32px; text-align:center">
+                        <h:outputText value="#{requirement.id}" />
+                    </p:column>
+                    <p:column headerText="Description" style="text-align:center" >
+                        <h:outputText value="#{requirement.description}" />
+                    </p:column>
+                </p:dataTable>
+            </div> 
+            
+            <p:dialog header="Selected Requirements" widgetVar="selectedReqDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="1000">
+                    <p:outputPanel id="selectedReqDetail" style="text-align:center;">
+                        <ui:repeat value="#{noInteractiveView.selectedRequirements}" var="req">
+                            <h:outputText value="#{req.id} - #{req.description}" style="display:block"/>
+                        </ui:repeat>
+                    </p:outputPanel>
+            </p:dialog>
+            
+            
+        </h:form>   
+        </ui:define>
+        </ui:composition>            
+    </h:body>
+    
+</html>

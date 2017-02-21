@@ -13,7 +13,7 @@ import br.uece.goes.model.User;
  *
  * @author italo
  */
-public class Main {
+public class CarregarUser {
     public static void main(String [] asas) {
         ObjectDAO dao = new ObjectDAO();
         User u = new User();

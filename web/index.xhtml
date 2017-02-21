@@ -3,32 +3,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
       >
     <h:head>
         <title>Evaluation</title>
+
     </h:head>
     <h:body>
         <h:form>
-            <p:panel id="panel" header="Login" style="margin: auto; width: 400px">
-
+                       
+            <p:panel id="panel" header="Login" style="margin: auto; width: 400px; left: -12.516px; top: 191px;">
+                
+                <!--<p:graphicImage url="/resources/images/logo_goes.png" width="370" height="100"/> -->
+               
                 <p:messages id="msgs" />
 
                 <h:panelGrid columns="2" cellpadding="5">
+                               
                     <p:outputLabel for="email" value="Email:" />
-                    <p:inputText id="email" value="#{login.email}" required="true" label="Email"/>
-                   
+                    <p:inputText id="email" value="#{login.email}" required="true" label="Email" validatorMessage="Invalid email format">
+                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                   </p:inputText>
+                    
                     <p:outputLabel for="password" value="Password:" />
                     <p:password id="password" value="#{login.password}" label="password"/>
                 
                     
                 </h:panelGrid>
                 <h:panelGrid columns="1" style="width: 100%" cellspacing="10">
-                    <p:commandButton value="Entrar" style="width: 100%" actionListener= "#{login.validate()}" update="panel" icon="fa-sign-in" />
+                    <p:commandButton value="Enter" style="width: 100%" action= "#{login.validate()}" update="panel" icon="fa-sign-in"/>
                     <p:commandButton value="Create new user" style="width: 100%" action= "register?faces-redirect=true" update="panel" icon="fa-sign-in" immediate="true"/>
                 </h:panelGrid>
                 <p:link value="Esqueceu a senha?" outcome="recoverPassword" style="width: 100%; margin: auto; text-align: center"/>
             </p:panel>
+            
         </h:form>
 
     </h:body>

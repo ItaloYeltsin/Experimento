@@ -84,7 +84,5 @@ public class User implements Serializable {
     public String toString() {
         return "br.goes.uece.model.User[ id=" + id + " ]";
     }
-    
-   
-    
+
 }

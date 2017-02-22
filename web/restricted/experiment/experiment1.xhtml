@@ -36,7 +36,7 @@
         <ui:composition template="/restricted/layout/layout.xhtml">
 
             <ui:define name="content">
-                <h:form>    
+                <h:form prependId="false">    
 
                     <h:panelGrid columns="2">
                         <p:dataTable disabledSelection="true" var="requirement" 
@@ -68,7 +68,8 @@
                     </h:panelGrid>
 
                     <div align="center" >
-                       <input type="text" id="subject_value" name="example_name" value="" />
+                        <!--<input type="text" id="subject_value" name="example_name" value="" />-->
+                       <h:inputText id="subject_value" value="#{noInteractiveView.rate}"/>
                     </div>
                 </h:form>             
 

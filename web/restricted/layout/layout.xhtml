@@ -1,38 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
- 
+
     <h:head>
         <title>Evaluation</title>
+        <!--<h:outputStylesheet library="css" name="normalize.css" />-->
+        <h:outputStylesheet library="css" name="ion.rangeSlider.css" />
+        <h:outputStylesheet library="css" name="ion.rangeSlider.skinHTML5.css" />
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="body" />
+        <h:outputScript name="js/ion.rangeSlider.min.js" target="body"/>
+        <h:outputScript target="body">
+            $ = jQuery;
+            $(function () {
+
+                $("#subject_value").ionRangeSlider({
+                    type: "single",
+                    min: 0,
+                    from: 50,
+                    max: 100,
+                    grid: true,
+                    prettify: function (n) {
+                        if (n &gt;= 0 &amp;&amp; n &lt; 25) {
+                            return "unsatisfactory";
+                        }else if(n &gt;= 25 &amp;&amp; n &lt; 50) {
+                            return "acceptable";
+                            }else if(n &gt;= 50 &amp;&amp; n &lt; 75) {
+                            return "good";
+                        }else if(n &gt;= 75 &amp;&amp; n &lt; 100) {
+                            return "very good";
+                        }else if(n === 100) {
+                            return "excellent";
+                        }
+                        return "";
+                    }
+                });
+
+            });
+        </h:outputScript>
+
     </h:head>
- 
+
     <h:body>
- 
-	<div id="page">
- 
-	    <div id="header">
-		<ui:insert name="header" >
-		  <ui:include src="/restricted/layout/header.xhtml" />
-		</ui:insert>
-	    </div>
-            
+
+        <div id="page">
+
+            <div id="header">
+                <ui:insert name="header" >
+                    <ui:include src="/restricted/layout/header.xhtml" />
+                </ui:insert>
+            </div>
+
             <div id="content">
-	  	<ui:insert name="content" >
-	 	  <ui:include src="/restricted/layout/content.xhtml" />
-	   	</ui:insert>
-	    </div>
- 
-	    <div id="footer">
-	    	<ui:insert name="footer" >
-	    	  <ui:include src="/restricted/layout/footer.xhtml" />
-	    	</ui:insert>
-    	    </div>
+                <ui:insert name="content" >
+                    <ui:include src="/restricted/layout/content.xhtml" />
+                </ui:insert>
+            </div>
+
+            <div id="footer">
+                <ui:insert name="footer" >
+                    <ui:include src="/restricted/layout/footer.xhtml" />
+                </ui:insert>
+            </div>
 
         </div>
- 
+
     </h:body>
 </html>

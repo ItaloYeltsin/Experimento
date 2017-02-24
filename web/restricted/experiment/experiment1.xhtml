@@ -5,53 +5,76 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"         
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
+
     <h:head>
         <title>Experiment-part1</title>
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/js/ion.rangeSlider.min.js" type="text/javascript"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <script src="#{facesContext.externalContext.requestContextPath}/resources/js/ion.rangeSlider.min.js" type="text/javascript"></script>
+
     </h:head>
-    
+
     <h:body>
-        	
+        <h:outputStylesheet library="css" name="normalize.css" />
+        <h:outputStylesheet library="css" name="ion.rangeSlider.css" />
+        <h:outputStylesheet library="css" name="ion.rangeSlider.skinHTML5.css" />
+        <h:outputScript library="js" name="jquery-3.1.1.min.js" target="head" />
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+        <h:outputScript name="js/ion.rangeSlider.min.js"/>
+        <h:outputScript target="head">
+            var $j = jQuery;
+            $j("subject_value").ionRangeSlider({
+            grid: true,
+            from: 5,
+            values: [
+            "Very bad", "Bad",
+            "Indifferent", "Very good",
+            "Excelent"
+            ]
+            });
+        </h:outputScript>   
         <ui:composition template="/restricted/layout/layout.xhtml">
-        
-        <ui:define name="content">
-        <h:form>    
-            <div align="center" >
-                
-                <p:inputText id="txt1" value="#{noInteractiveView.preference}" style="width:32px" />
-                
-                <h:panelGrid columns="3" cellpadding="10">
-                    <p:slider for="txt1" style="width:1000px" />
-                    <p:commandButton  value="Next" action="#{noInteractiveView.execute()}" ajax="false"/>
-                </h:panelGrid>
-                
-                
-                <p:dataTable id="checkboxDT" disabledSelection="true" var="requirement" value="#{noInteractiveView.requirements}" selectionMode="multiple" selection="#{noInteractiveView.selectedRequirements}" rowKey="#{requirement.id}" style="margin: auto; width: 1200px;">
-                    <f:facet name="header">
-                        <p:commandButton process="checkboxDT" icon="ui-icon-search" value="View" oncomplete="PF('selectedReqDialog').show()" />
-                        Requirements:
-                    </f:facet>
-                    <p:column headerText="Id" style="width:32px; text-align:center">
-                        <h:outputText value="#{requirement.id}" />
-                    </p:column>
-                    <p:column headerText="Description" style="text-align:center" >
-                        <h:outputText value="#{requirement.description}" />
-                    </p:column>
-                </p:dataTable>
-            </div> 
-            
-            <p:dialog header="Selected Requirements" widgetVar="selectedReqDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="1000">
-                    <p:outputPanel id="selectedReqDetail" style="text-align:center;">
-                        <ui:repeat value="#{noInteractiveView.selectedRequirements}" var="req">
-                            <h:outputText value="#{req.id} - #{req.description}" style="display:block"/>
-                        </ui:repeat>
-                    </p:outputPanel>
-            </p:dialog>
-            
-            
-        </h:form>   
-        </ui:define>
+
+            <ui:define name="content">
+                <h:form prependId="false">    
+
+                    <h:panelGrid columns="2">
+                        <p:dataTable disabledSelection="true" var="requirement" 
+                                     value="#{noInteractiveView.requirements}" 
+                                     rowKey="#{requirement.id}"
+                                     scrollable="true" 
+                                     scrollHeight="600"
+                                     >
+                            <p:column headerText="Id" style="width:32px; text-align:center">
+                                <h:outputText value="#{requirement.id}" />
+                            </p:column>
+                            <p:column headerText="Description" style="text-align:center" >
+                                <h:outputText value="#{requirement.description}" />
+                            </p:column>
+                        </p:dataTable>
+                        <p:dataTable disabledSelection="true" var="selectedRequirement" 
+                                     value="#{noInteractiveView.selectedRequiriments}" 
+                                     rowKey="#{selectedRequirement.id}" 
+                                     scrollable="true"
+                                     scrollHeight="600"
+                                     >
+                            <p:column headerText="Id" style="width:32px; text-align:center">
+                                <h:outputText value="#{selectedRequirement.id}" />
+                            </p:column>
+                            <p:column headerText="Description" style="text-align:center" >
+                                <h:outputText value="#{selectedRequirement.description}" />
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGrid>
+
+                    <div align="center" >
+                        <!--<input type="text" id="subject_value" name="example_name" value="" />-->
+                       <h:inputText id="subject_value" value="#{noInteractiveView.rate}"/>
+                    </div>
+                </h:form>             
+
+            </ui:define>
         </ui:composition>            
     </h:body>
-    
+
 </html>

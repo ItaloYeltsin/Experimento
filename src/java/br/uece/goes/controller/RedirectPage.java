@@ -1,0 +1,47 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.uece.goes.controller;
+
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+/**
+ *
+ * @author Raphael
+ */
+@ManagedBean
+@SessionScoped
+public class RedirectPage {
+
+    public void redirectAccount() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("account.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(RedirectPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void redirectExperiment() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("problems/index.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(RedirectPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void redirectAbout() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("account.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(RedirectPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+;
+}

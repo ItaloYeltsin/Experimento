@@ -14,21 +14,23 @@
 
         <ui:composition template="/restricted/layout/layout.xhtml">
             <ui:define name="content">
+                <p:messages id="msgs" />
+                <h:form>
+                    <p:panel header="Interactive Approach">
+                        This is <b>semi-automatic</b> strategy to select requirements. 
+                        Not only does it use information previously shown of each requirement and 
+                        select them based on their cost and importance value, but also, it incorporates
+                        your subjective opinion about next release planning. Your role in this
+                        approach is to evaluate a set of at least <b>10 solutions</b>, so
+                        your opinion may be included in the solution search process trough 
+                        a machine learning algorithm. 
+                        <p/>
+                        <p/>
+                        <p/>
+                        <p:commandButton value="Run" action= "#{iNRP.fowardInterative(login.user)}" />
 
-                <p:panel header="Interactive Approach">
-                    This is <b>semi-automatic</b> strategy to select requirements. 
-                    Not only does it use information previously shown of each requirement and 
-                    select them based on their cost and importance value, but also, it incorporates
-                    your subjective opinion about next release planning. Your role in this
-                    approach is to evaluate a set of at least <b>10 solutions</b>, so
-                    your opinion may be included in the solution search process trough 
-                    a machine learning algorithm. 
-                    <p/>
-                    <p
-                    <p/>
-                    <p:commandButton value="Run" action= "experiment1?faces-redirect=true" />
-
-                </p:panel>
+                    </p:panel>
+                </h:form>
             </ui:define>
         </ui:composition>
 

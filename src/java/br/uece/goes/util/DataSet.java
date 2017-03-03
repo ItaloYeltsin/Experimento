@@ -73,20 +73,20 @@ public class DataSet {
 
     public void insert(Solution individual, double she) {
 
-            Instance aux = new Instance(numberOfRequirements + 1);
-            Binary variable = ((Binary)individual.getDecisionVariables()[0]) ;
+        Instance aux = new Instance(numberOfRequirements + 1);
+        Binary variable = ((Binary) individual.getDecisionVariables()[0]);
 
-            for (int i = 0; i < variable.getNumberOfBits() ; i++) {
-                if (variable.bits_.get(i)){
+        for (int i = 0; i < variable.getNumberOfBits(); i++) {
+            if (variable.bits_.get(i)) {
                 aux.setValue((Attribute) featureVector.elementAt(i), 1);
-                }else{
-                aux.setValue((Attribute) featureVector.elementAt(i), 0);    
-                }
+            } else {
+                aux.setValue((Attribute) featureVector.elementAt(i), 0);
             }
-            
-            aux.setValue((Attribute) featureVector.elementAt(numberOfRequirements), she);
-            dataSet.add(aux);
-           
+        }
+
+        aux.setValue((Attribute) featureVector.elementAt(numberOfRequirements), she);
+        dataSet.add(aux);
+
     }
 
     /**
@@ -106,6 +106,20 @@ public class DataSet {
         Instance instance = new Instance(numberOfRequirements);
         for (int i = 0; i < individual.length; i++) {
             instance.setValue((Attribute) featureVector.elementAt(i), individual[i]);
+        }
+        return instance;
+    }
+
+    public Instance getInstance(Solution individual) {
+        Instance instance = new Instance(numberOfRequirements);
+        Binary variable = ((Binary) individual.getDecisionVariables()[0]);
+
+        for (int i = 0; i < variable.getNumberOfBits(); i++) {
+            if (variable.bits_.get(i)) {
+                instance.setValue((Attribute) featureVector.elementAt(i), 1);
+            } else {
+                instance.setValue((Attribute) featureVector.elementAt(i), 0);
+            }
         }
         return instance;
     }

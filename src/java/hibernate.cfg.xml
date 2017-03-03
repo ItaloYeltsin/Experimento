@@ -45,5 +45,6 @@ Contributor(s):
     <property name=" hibernate.show_sql">true</property>
     <mapping class="br.uece.goes.model.User"/>
     <mapping class="br.uece.goes.model.Requirement"/>
+    <mapping class="br.uece.goes.model.Experiment"/>
   </session-factory>
 </hibernate-configuration>

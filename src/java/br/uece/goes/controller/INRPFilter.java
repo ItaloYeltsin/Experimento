@@ -46,7 +46,8 @@ public class INRPFilter implements Filter {
 
         if (sess != null) {
             user = (User) sess.getAttribute("loggedUser");
-            String contextPath;
+            String contextPath= ((HttpServletRequest) request)
+                                .getContextPath();
 
             if (dao.getExperiment(user.getId()) == null) {
                 step = 0;
@@ -60,23 +61,15 @@ public class INRPFilter implements Filter {
 
                 case "/restricted/problems/InteractiveNextReleaseProblem/index.xhtml":
                     if (step == 1) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginNonInteractive.xhtml");
                     } else if (step == 2) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginInteractive.xhtml");
                     } else if (step == 3) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/feedback.xhtml");
                     } else if (step == 4) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/thanks.xhtml");
                     }
@@ -85,23 +78,15 @@ public class INRPFilter implements Filter {
 
                 case "/restricted/problems/InteractiveNextReleaseProblem/beginNonInteractive.xhtml":
                     if (step == 0) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/index.xhtml");
                     } else if (step == 2) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginInteractive.xhtml");
                     } else if (step == 3) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/feedback.xhtml");
                     } else if (step == 4) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/thanks.xhtml");
                     }
@@ -110,23 +95,15 @@ public class INRPFilter implements Filter {
 
                 case "/restricted/problems/InteractiveNextReleaseProblem/experimentNonInteractive.xhtml":
                     if (step == 0) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/index.xhtml");
                     } else if (step == 2) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginInteractive.xhtml");
                     } else if (step == 3) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/feedback.xhtml");
                     } else if (step == 4) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/thanks.xhtml");
                     }
@@ -135,23 +112,15 @@ public class INRPFilter implements Filter {
 
                 case "/restricted/problems/InteractiveNextReleaseProblem/beginInteractive.xhtml":
                     if (step == 0) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/index.xhtml");
                     } else if (step == 1) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginNonInteractive.xhtml");
                     } else if (step == 3) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/feedback.xhtml");
                     } else if (step == 4) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/thanks.xhtml");
                     }
@@ -160,23 +129,15 @@ public class INRPFilter implements Filter {
 
                 case "/restricted/problems/InteractiveNextReleaseProblem/evaluateSolutions.xhtml":
                     if (step == 0) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/index.xhtml");
                     } else if (step == 1) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginNonInteractive.xhtml");
                     } else if (step == 3) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/feedback.xhtml");
                     } else if (step == 4) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/thanks.xhtml");
                     }
@@ -185,23 +146,15 @@ public class INRPFilter implements Filter {
 
                 case "/restricted/problems/InteractiveNextReleaseProblem/experimentInteractive.xhtml":
                     if (step == 0) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/index.xhtml");
                     } else if (step == 1) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginNonInteractive.xhtml");
                     } else if (step == 3) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/feedback.xhtml");
                     } else if (step == 4) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/thanks.xhtml");
                     }
@@ -210,23 +163,15 @@ public class INRPFilter implements Filter {
 
                 case "/restricted/problems/InteractiveNextReleaseProblem/feedback.xhtml":
                     if (step == 0) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/index.xhtml");
                     } else if (step == 1) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginNonInteractive.xhtml");
                     } else if (step == 2) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginInteractive.xhtml");
                     } else  if (step == 4) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/thanks.xhtml");
                     }
@@ -235,23 +180,15 @@ public class INRPFilter implements Filter {
 
                 case "/restricted/problems/InteractiveNextReleaseProblem/thanks.xhtml":
                     if (step == 0) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/index.xhtml");
                     } else if (step == 1) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginNonInteractive.xhtml");
                     } else if (step == 2) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginInteractive.xhtml");
                     } else if (step == 3) {
-                        contextPath = ((HttpServletRequest) request)
-                                .getContextPath();
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/feedback.xhtml");
                     }

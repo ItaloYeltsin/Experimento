@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -22,26 +24,44 @@ public class RedirectPage {
 
     public void redirectAccount() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("account.xhtml");
+            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            String contextPath = ((HttpServletRequest) request)
+                    .getContextPath();
+            response.sendRedirect(contextPath + "/faces/restricted/account.xhtml");
+            FacesContext.getCurrentInstance().responseComplete();
         } catch (IOException ex) {
             Logger.getLogger(RedirectPage.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     public void redirectExperiment() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("problems/index.xhtml");
+            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            String contextPath = ((HttpServletRequest) request)
+                    .getContextPath();
+            response.sendRedirect(contextPath + "/faces/restricted/problems/InteractiveNextReleaseProblem/index.xhtml");
+            FacesContext.getCurrentInstance().responseComplete();
         } catch (IOException ex) {
             Logger.getLogger(RedirectPage.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     public void redirectAbout() {
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("account.xhtml");
+            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            String contextPath = ((HttpServletRequest) request)
+                    .getContextPath();
+            response.sendRedirect(contextPath + "/faces/restricted/account.xhtml");
+            FacesContext.getCurrentInstance().responseComplete();
         } catch (IOException ex) {
             Logger.getLogger(RedirectPage.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 ;
 }

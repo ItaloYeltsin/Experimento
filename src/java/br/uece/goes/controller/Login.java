@@ -13,7 +13,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-
 /**
  *
  * @author italo
@@ -21,11 +20,12 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class Login {
+
     private String email;
     private String password;
     private User user;
     private ObjectDAO dao;
-    
+
     public Login() {
         dao = new ObjectDAO();
     }
@@ -45,8 +45,7 @@ public class Login {
     public void setDao(ObjectDAO dao) {
         this.dao = dao;
     }
-    
-    
+
     public String getEmail() {
         return email;
     }
@@ -62,11 +61,16 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String validate() {
-        user = dao.getUser(email,TransformaStringMD5.md5(password));
-        
-        if(user != null) {
+        user = dao.getUser(email, TransformaStringMD5.md5(password));
+
+        if (user != null) {
+
+            INRP.etapaBeginNonInteractive = false;
+            INRP.etapaBeginInteractive = false;
+            INRP.etapaEvaluateSolutions = false;
+
             System.out.print(user.getId());
             FacesContext.getCurrentInstance().getExternalContext()
                     .getSessionMap().put("loggedUser", user);
@@ -76,28 +80,27 @@ public class Login {
         FacesMessage fm = new FacesMessage("Email and password do not match");
         fm.setSeverity(FacesMessage.SEVERITY_ERROR);
         FacesContext.getCurrentInstance().addMessage("Fail to login", fm);
-                
+
         return "";
     }
-    
+
     public String change(String newPassword) {
-      
+
         user = dao.getUser(email);
-        
+
         user.setPassword(TransformaStringMD5.md5(newPassword));
         dao.update(user);
-        
-     FacesMessage fm = new FacesMessage("Password Change");   
-     fm.setSeverity(FacesMessage.SEVERITY_INFO);
-     FacesContext.getCurrentInstance().addMessage("Password Changed", fm);
-     
-     return "/restricted/account.xhtml";   
+
+        FacesMessage fm = new FacesMessage("Password Change");
+        fm.setSeverity(FacesMessage.SEVERITY_INFO);
+        FacesContext.getCurrentInstance().addMessage("Password Changed", fm);
+
+        return "/restricted/account.xhtml";
     }
-    
+
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/index.xhtml";
     }
-    
-}
 
+}

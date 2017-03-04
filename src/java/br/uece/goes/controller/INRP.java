@@ -17,10 +17,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import jmetal.core.Algorithm;
 import jmetal.core.Operator;
 import jmetal.core.Problem;
@@ -40,14 +38,17 @@ public class INRP implements Serializable {
 
     private Experiment exp;
     private DataSet dataset;
-    public static List<Requirement> selectedRequiriments;
-    public static List<Requirement> noSelectedRequiriments;
+    private List<Requirement> selectedRequiriments;
+    private List<Requirement> noSelectedRequiriments;
     SolutionSet population;
     private ObjectDAO dao;
     private int rate;
     private int index;
     private boolean stop;
     private boolean avaliar;
+    public static boolean etapaBeginNonInteractive;
+    public static boolean etapaBeginInteractive;
+    public static boolean etapaEvaluateSolutions;
 
     @PostConstruct
     public void init() {
@@ -58,9 +59,8 @@ public class INRP implements Serializable {
         dao = new ObjectDAO();
         rate = 50;
         index = 1;
-
     }
-
+    
     public String beginExperiment(User user) {
 
         if (dao.getExperiment(user.getId()) == null) {
@@ -86,7 +86,7 @@ public class INRP implements Serializable {
         selectedRequiriments.stream().forEach((requirement) -> {
             noSelectedRequiriments.remove(requirement);
         });
-
+        etapaBeginNonInteractive = true;
         return "experimentNonInteractive.xhtml";
 
     }
@@ -108,7 +108,7 @@ public class INRP implements Serializable {
         selectedRequiriments.stream().forEach((requirement) -> {
             noSelectedRequiriments.remove(requirement);
         });
-         
+        etapaBeginInteractive = true;
         return "evaluateSolutions.xhtml";
     }
 
@@ -144,7 +144,7 @@ public class INRP implements Serializable {
         selectedRequiriments.stream().forEach((requirement) -> {
             noSelectedRequiriments.remove(requirement);
         });
-
+        etapaEvaluateSolutions = true;
         return "experimentInteractive.xhtml";
     }
 

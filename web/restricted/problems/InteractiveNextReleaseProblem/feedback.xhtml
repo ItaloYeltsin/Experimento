@@ -11,17 +11,16 @@
     </h:head>
 
     <h:body>
-        	
-            <ui:composition template="/restricted/layout/layout.xhtml">
-                
-                <ui:define name="content">
-                    <p:messages id="msgs" />
-                    <h:form>
+
+        <ui:composition template="/restricted/layout/layout.xhtml">
+
+            <ui:define name="content">
+                <h:form>
                     FEEDBACK HERE!
-                    </h:form>
-                    <p:commandButton value="End" action= "#{iNRP.end(login.user)}" />
-                </ui:define>
-            </ui:composition>
+                </h:form>
+                <p:commandButton value="End" action= "#{iNRP.end(login.user)}" />
+            </ui:define>
+        </ui:composition>
     </h:body>
 
 </html>

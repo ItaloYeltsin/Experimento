@@ -38,7 +38,6 @@ public class INRPFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-        Experiment exp = null;
         User user = null;
         ObjectDAO dao = new ObjectDAO();
         HttpSession sess = ((HttpServletRequest) request).getSession(false);
@@ -95,7 +94,7 @@ public class INRPFilter implements Filter {
 
                 case "/restricted/problems/InteractiveNextReleaseProblem/experimentNonInteractive.xhtml":
 
-                    if (step == 1 && INRP.selectedRequiriments == null) {
+                    if (step == 1 && !INRP.etapaBeginNonInteractive) {
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginNonInteractive.xhtml");
                     } else if (step == 0) {
@@ -133,9 +132,11 @@ public class INRPFilter implements Filter {
 
                 case "/restricted/problems/InteractiveNextReleaseProblem/evaluateSolutions.xhtml":
 
-                    if (step == 2 && INRP.selectedRequiriments == null) {
+                    if (step == 2 && !INRP.etapaBeginInteractive) {
+                        System.out.println(INRP.etapaBeginInteractive);
                         ((HttpServletResponse) response).sendRedirect(contextPath
-                                + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginNonInteractive.xhtml");
+                                + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginInteractive.xhtml");
+
                     } else if (step == 0) {
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/index.xhtml");
@@ -154,14 +155,14 @@ public class INRPFilter implements Filter {
 
                 case "/restricted/problems/InteractiveNextReleaseProblem/experimentInteractive.xhtml":
 
-                    if (step == 2 && INRP.selectedRequiriments == null) {
+                    if (step == 2 && !INRP.etapaEvaluateSolutions) {
+                        System.out.println(INRP.etapaEvaluateSolutions);
                         ((HttpServletResponse) response).sendRedirect(contextPath
-                                + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginNonInteractive.xhtml");
-                    }
-                    else if(step == 0)  {
+                                + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginInteractive.xhtml");
+                    } else if (step == 0) {
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/index.xhtml");
-                    }else if (step == 1) {
+                    } else if (step == 1) {
                         ((HttpServletResponse) response).sendRedirect(contextPath
                                 + "/faces/restricted/problems/InteractiveNextReleaseProblem/beginNonInteractive.xhtml");
                     } else if (step == 3) {

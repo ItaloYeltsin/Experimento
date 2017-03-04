@@ -35,28 +35,14 @@ public class RedirectPage {
         }
 
     }
-
-    public void redirectExperiment() {
-        try {
-            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-            String contextPath = ((HttpServletRequest) request)
-                    .getContextPath();
-            response.sendRedirect(contextPath + "/faces/restricted/problems/InteractiveNextReleaseProblem/index.xhtml");
-            FacesContext.getCurrentInstance().responseComplete();
-        } catch (IOException ex) {
-            Logger.getLogger(RedirectPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
+    
     public void redirectAbout() {
         try {
             HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
             String contextPath = ((HttpServletRequest) request)
                     .getContextPath();
-            response.sendRedirect(contextPath + "/faces/restricted/account.xhtml");
+            response.sendRedirect(contextPath + "/faces/restricted/about.xhtml");
             FacesContext.getCurrentInstance().responseComplete();
         } catch (IOException ex) {
             Logger.getLogger(RedirectPage.class.getName()).log(Level.SEVERE, null, ex);

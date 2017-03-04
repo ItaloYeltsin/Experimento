@@ -40,8 +40,8 @@ public class INRP implements Serializable {
 
     private Experiment exp;
     private DataSet dataset;
-    private List<Requirement> selectedRequiriments;
-    private List<Requirement> noSelectedRequiriments;
+    public static List<Requirement> selectedRequiriments;
+    public static List<Requirement> noSelectedRequiriments;
     SolutionSet population;
     private ObjectDAO dao;
     private int rate;

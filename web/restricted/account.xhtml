@@ -4,20 +4,20 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
-xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
     <h:head>
         <title>Account</title>
     </h:head>
-    
+
     <h:body>         	
         <ui:composition template="/restricted/layout/layout.xhtml">
             <ui:define name="content">
                 <h:form>
 
-                <p:messages id="msgs" />   
+                    <p:messages id="msgs" />   
 
-                <p:panel id="panel" header="Account" style="margin: auto; width: 400px; left: -12.516px; top: 191px;">
+                    <p:panel id="panel" header="Account" style="margin: auto; width: 400px; left: -12.516px; top: 191px;">
 
                         <p:panelGrid columns="2">
 
@@ -29,32 +29,32 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 
                         </p:panelGrid>
-                </p:panel>  
+                    </p:panel>  
 
-                <p:panel id="panel2" header="Change Password" style="margin: auto; width: 400px; left: -12.516px; top: 191px;">  
-                    <p:panelGrid columns="2">
+                    <p:panel id="panel2" header="Change Password" style="margin: auto; width: 400px; left: -12.516px; top: 191px;">  
+                        <p:panelGrid columns="2">
 
                             <p:outputLabel for="password" value="New Password:" />
                             <p:password id="password" value="#{login.user.password}" match="confirmPassword" required="true" label="password"
-                            validatorMessage="These passwords don't match. Try again?"/>
+                                        validatorMessage="These passwords don't match. Try again?"/>
 
                             <p:outputLabel for="confirmPassword" value="Confirm Password:" />
                             <p:password id="confirmPassword" required="true" label="confirmPassword" /> 
 
-                    </p:panelGrid>
+                        </p:panelGrid>
 
-                    <div align="center" >
-                        <h:panelGrid columns="1" cellspacing="10">
-                            <p:commandButton  value="Change" action="#{login.change(login.user.password)}" ajax="false"/> 
-                        </h:panelGrid>
-                    </div> 
+                        <div align="center" >
+                            <h:panelGrid columns="1" cellspacing="10">
+                                <p:commandButton  value="Change" action="#{login.change(login.user.password)}" ajax="false"/> 
+                            </h:panelGrid>
+                        </div> 
 
-                </p:panel>      
+                    </p:panel>      
 
                 </h:form>
             </ui:define>
         </ui:composition>
-        
+
     </h:body>
-              
+
 </html>

@@ -2,17 +2,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"         
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
+>      
     <h:head>
         <title>Main</title>
     </h:head>
-    
+   
     <h:body>
         	
-        <ui:composition template="/restricted/layout/layout.xhtml"/>
+        <ui:composition template="/restricted/layout/layout.xhtml">
+            <ui:define name="content">
+                <p:panel header="The Next Release Problem">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel >
+                            Companies developing and maintaining complex software 
+                            systems need to determine the features that should be 
+                            added to their system as part of the next release. 
+                            They will wish to select these features to ensure 
+                            the demands of their client base are satisfied as 
+                            much as possible while at the same time ensuring 
+                            that they themselves have the resources to undertake 
+                            the necessary development. This situation is modelled 
+                            in this paper and the problem of selecting an optimal
+                            next release is shown to be NP-hard. The use of various 
+                            modern heuristics to find a high quality but possibly 
+                            suboptimal solution is described. Comparative studies 
+                            of these heuristics are given for various test cases.
+                        </p:outputLabel>
+                        <p:commandButton value="Apply" action="problems/InteractiveNextReleaseProblem/index.xhtml?faces-redirect=true"/>
+                    </h:panelGrid>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
                     
     </h:body>
     

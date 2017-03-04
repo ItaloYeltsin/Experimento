@@ -22,7 +22,7 @@ public class Requirement {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String Description;
-    private Double ValueReq;
+    private Double Importance;
     private Double Cost;
 
     public Requirement() {
@@ -32,9 +32,9 @@ public class Requirement {
         this.Description = Description;
     }
 
-    public Requirement(String Description, Double Value, Double Cost) {
+    public Requirement(String Description, Double Importance, Double Cost) {
         this.Description = Description;
-        this.ValueReq = Value;
+        this.Importance = Importance;
         this.Cost = Cost;
     }
     
@@ -54,12 +54,12 @@ public class Requirement {
         this.Description = Description;
     }
 
-    public Double getValue() {
-        return ValueReq;
+    public Double getImportance() {
+        return Importance;
     }
 
-    public void setValue(Double Value) {
-        this.ValueReq = Value;
+    public void setImportance(Double Importance) {
+        this.Importance = Importance;
     }
 
     public Double getCost() {

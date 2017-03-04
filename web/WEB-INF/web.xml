@@ -5,8 +5,8 @@
         <param-value>Development</param-value>
     </context-param>
     <context-param>
-	<param-name>primefaces.THEME</param-name>
-	<param-value>omega</param-value>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>omega</param-value>
     </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
@@ -26,11 +26,19 @@
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
     <filter>
-      <filter-name>LoginFilter</filter-name>
-      <filter-class>br.uece.goes.controller.LoginFilter</filter-class>    
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>br.uece.goes.controller.LoginFilter</filter-class>
     </filter>
     <filter-mapping>
-      <filter-name>LoginFilter</filter-name>
-      <url-pattern>/restricted/*</url-pattern>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/faces/restricted/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>INRPFilter</filter-name>
+        <filter-class>br.uece.goes.controller.INRPFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>INRPFilter</filter-name>
+        <url-pattern>/faces/restricted/problems/InteractiveNextReleaseProblem/*</url-pattern>
     </filter-mapping>
 </web-app>

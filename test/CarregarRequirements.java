@@ -22,11 +22,11 @@ public class CarregarRequirements {
             instance = new ReaderInstance("src/instances/I_S_50_50.txt");                
             ObjectDAO dao = new ObjectDAO();      
             String desc[] = instance.getDescription();
-            double value[] = instance.getValueReqPod();
+            double importance[] = instance.getValueReqPod();
             double cost[] = instance.getCost();
         
             for (int i = 0; i < instance.getnRequirements(); i++) {
-                Requirement r = new Requirement(desc[i],value[i],cost[i]);  
+                Requirement r = new Requirement(desc[i],importance[i],cost[i]);  
                 dao.save(r);                   
             }  
         }

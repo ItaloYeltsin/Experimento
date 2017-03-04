@@ -5,7 +5,6 @@
  */
 package br.uece.goes.model;
 
-
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -22,46 +21,43 @@ import org.hibernate.cfg.Configuration;
  * @author italo
  */
 public class ObjectDAO {
-    
-   SessionFactory sessionFactory;
+
+    SessionFactory sessionFactory;
 
     public ObjectDAO() {
-         try {
-           setUp();
-       } catch (Exception ex) {
-           ex.printStackTrace();
-       }    
+        try {
+            setUp();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
-   
-   
-   
-   protected void setUp() throws Exception {
-	// A SessionFactory is set up once for an application!
-	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-			.configure() // configures settings from hibernate.cfg.xml
-			.build();
-	try {
-		sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
-	}
-	catch (Exception e) {
-		// The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
-		// so destroy it manually.
-                e.printStackTrace();
-		StandardServiceRegistryBuilder.destroy( registry );
-	}
-}
-    
+
+    protected void setUp() throws Exception {
+        // A SessionFactory is set up once for an application!
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure() // configures settings from hibernate.cfg.xml
+                .build();
+        try {
+            sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+        } catch (Exception e) {
+            // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
+            // so destroy it manually.
+            e.printStackTrace();
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
+    }
+
     public void save(Object p) {
-      
+
         Session s = sessionFactory.openSession();
         s.beginTransaction();
         s.persist(p);
         s.getTransaction().commit();
         s.close();
     }
-    
-        public void update(Object p) {
-      
+
+    public void update(Object p) {
+
         Session s = sessionFactory.openSession();
         s.beginTransaction();
         s.update(p);
@@ -69,66 +65,84 @@ public class ObjectDAO {
         s.close();
     }
 
-    
     public User getUser(String email, String password) {
         Session s = sessionFactory.openSession();
         EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
         User user = null;
-        try{
+        try {
             user = entityManager.createQuery(
-            "select u " +
-            "from User u " +
-            "where " +
-            "    u.email = :email and " +
-            "    u.password = :password",
-            User.class)
-            .setParameter( "email", email)
-                .setParameter( "password", password)
+                    "select u "
+                    + "from User u "
+                    + "where "
+                    + "    u.email = :email and "
+                    + "    u.password = :password",
+                    User.class)
+                    .setParameter("email", email)
+                    .setParameter("password", password)
                     .getSingleResult();
-        }catch(NoResultException e) {
-            
+        } catch (NoResultException e) {
+
         }
-         return user;
+        return user;
     }
-    
+
     public User getUser(String email) {
         Session s = sessionFactory.openSession();
         EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
         User user = null;
-        try{
+        try {
             user = entityManager.createQuery(
-            "select u " +
-            "from User u " +
-            "where " +
-            "    u.email = :email",
-            User.class)
-            .setParameter( "email", email)
+                    "select u "
+                    + "from User u "
+                    + "where "
+                    + "    u.email = :email",
+                    User.class)
+                    .setParameter("email", email)
                     .getSingleResult();
-        }catch(NoResultException e) {
-            
+        } catch (NoResultException e) {
+
         }
-         return user;
+        return user;
     }
-          
-    public String getPassword(String email) {    
+
+    public Experiment getExperiment(Long userId) {
+        Session s = sessionFactory.openSession();
+        EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
+        Experiment experiment = null;
+        try {
+            experiment = entityManager.createQuery(
+                    "select u "
+                    + "from Experiment u "
+                    + "where "
+                    + "    u.userId = :userId",
+                    Experiment.class)
+                    .setParameter("userId", userId)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+
+        }
+        return experiment;
+    }
+
+    public String getPassword(String email) {
         Session s = sessionFactory.openSession();
         EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
         User user = null;
-        try{
+        try {
             user = entityManager.createQuery(
-            "select u " +
-            "from User u " +
-            "where " +
-            "    u.email = :email",
-            User.class)
-            .setParameter( "email", email)
+                    "select u "
+                    + "from User u "
+                    + "where "
+                    + "    u.email = :email",
+                    User.class)
+                    .setParameter("email", email)
                     .getSingleResult();
-        }catch(NoResultException e) {
-            
+        } catch (NoResultException e) {
+
         }
-         return user.getPassword();  
+        return user.getPassword();
     }
- 
+
     public void delete(Object object) {
         SessionFactory sessionFactory = new Configuration().configure()
                 .buildSessionFactory();
@@ -139,21 +153,20 @@ public class ObjectDAO {
         s.close();
     }
 
-      public List<Requirement> getAllReq() {
+    public List<Requirement> getAllReq() {
         Session s = sessionFactory.openSession();
         EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
         List<Requirement> reqs = null;
-        try{
+        try {
             reqs = entityManager.createQuery(
-            "select u " +
-            "from Requirement u ",
-            Requirement.class)
+                    "select u "
+                    + "from Requirement u ",
+                    Requirement.class)
                     .getResultList();
-        }catch(NoResultException e) {
-            
+        } catch (NoResultException e) {
+
         }
-         return reqs;
-    }  
-    
+        return reqs;
+    }
 
 }

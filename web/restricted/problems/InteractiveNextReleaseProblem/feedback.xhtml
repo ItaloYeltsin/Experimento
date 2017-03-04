@@ -13,24 +13,14 @@
     <h:body>
 
         <ui:composition template="/restricted/layout/layout.xhtml">
+
             <ui:define name="content">
                 <h:form>
-                    <p:panel header="Non-Interactive Approach">
-                        This is fully automatic strategy to select requirements. It 
-                        uses the previously shown information of each requirement and 
-                        select them based on their cost and importance value. Such a select
-                        is done as an optimization problem using a Genetic Algorithm.
-                        <p/>
-                        <p:commandButton value="Run" action= "#{iNRP.fowardNonInterative(login.user)}"/>
-
-                    </p:panel>
+                    FEEDBACK HERE!
                 </h:form>
-
+                <p:commandButton value="End" action= "#{iNRP.end(login.user)}" />
             </ui:define>
         </ui:composition>
-
     </h:body>
 
-
 </html>
-

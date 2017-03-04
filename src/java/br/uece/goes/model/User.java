@@ -25,8 +25,6 @@ public class User implements Serializable {
     private String email;
     private String password;
     private String name;
-    private int nonInterativeEvaluation;
-    private int interativeEvaluation;
     
     
      public Long getId() {
@@ -61,24 +59,6 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public int getNonInterativeEvaluation() {
-        return nonInterativeEvaluation;
-    }
-
-    public void setNonInterativeEvaluation(int nonInterativeEvaluation) {
-        this.nonInterativeEvaluation = nonInterativeEvaluation;
-    }
-
-    public int getInterativeEvaluation() {
-        return interativeEvaluation;
-    }
-
-    public void setInterativeEvaluation(int interativeEvaluation) {
-        this.interativeEvaluation = interativeEvaluation;
-    }
-
-    
-    
     @Override
     public int hashCode() {
         int hash = 0;

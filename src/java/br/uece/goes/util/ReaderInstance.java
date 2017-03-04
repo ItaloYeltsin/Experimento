@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author Raphael
  */
 public class ReaderInstance {
-    
+
     Integer nClient;
     Integer nRequirements;
     double importance[];
@@ -28,7 +28,7 @@ public class ReaderInstance {
     String description[];
 
     public ReaderInstance(String filename) {
-        
+
         Scanner scn;
         try {
             scn = new Scanner(new File(filename));
@@ -55,17 +55,17 @@ public class ReaderInstance {
             }
 
             caracter = jumpLine(scn);
-          
-            valueReq = new  double[nClient][nRequirements];
+
+            valueReq = new double[nClient][nRequirements];
             for (int i = 0; i < nClient; i++) {
                 tokens = new StringTokenizer(caracter);
-                    for (int j = 0; j < nRequirements; j++) {
-                        valueReq[i][j] = Integer.parseInt(tokens.nextToken().trim());
-                    }
-                        caracter = scn.nextLine();
-            }   
+                for (int j = 0; j < nRequirements; j++) {
+                    valueReq[i][j] = Integer.parseInt(tokens.nextToken().trim());
+                }
+                caracter = scn.nextLine();
+            }
             valueReqPond = PondValue(valueReq, importance, nRequirements, nClient);
-            
+
             caracter = jumpLine(scn);
 
             cost = new double[nRequirements];
@@ -83,34 +83,33 @@ public class ReaderInstance {
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ReaderInstance.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
+        }
+
     }
-    
+
     public String jumpLine(Scanner scn) {
 
-		String caracter = scn.nextLine();
-		while (caracter.contains("#")) {
-			caracter = scn.nextLine();
-		}
+        String caracter = scn.nextLine();
+        while (caracter.contains("#")) {
+            caracter = scn.nextLine();
+        }
 
-		return caracter;
-	}
+        return caracter;
+    }
 
-    public double[] PondValue(double [][] value, double importance[] ,int nReq, int nClient) {
-        
-        double[]  valuePond = new double[nRequirements]; 
-       
-            for (int i = 0; i < nReq; i++) {
-              for (int j = 0; j < nClient; j++) {
-                valuePond[i] += (value[j][i]*importance[j]);
-              }
-              valuePond[i] = valuePond[i]/nClient;
+    public double[] PondValue(double[][] value, double importance[], int nReq, int nClient) {
+
+        double[] valuePond = new double[nRequirements];
+
+        for (int i = 0; i < nReq; i++) {
+            for (int j = 0; j < nClient; j++) {
+                valuePond[i] += (value[j][i] * importance[j]);
             }
-            
+        }
+
         return valuePond;
     }
-    
+
     public Integer getnClient() {
         return nClient;
     }
@@ -135,7 +134,7 @@ public class ReaderInstance {
         this.importance = importance;
     }
 
-    public  double[][] getValueReq() {
+    public double[][] getValueReq() {
         return valueReq;
     }
 
@@ -143,7 +142,7 @@ public class ReaderInstance {
         this.valueReq = valueReq;
     }
 
-    public  double[] getCost() {
+    public double[] getCost() {
         return cost;
     }
 

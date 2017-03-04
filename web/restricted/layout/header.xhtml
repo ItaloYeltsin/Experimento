@@ -6,30 +6,36 @@
       xmlns:f="http://java.sun.com/jsf/core"       
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       >
-   
+
     <ui:composition>
-            <p:toolbar>
-                    <f:facet name="left">
-                        <h:form>
-                                <h:panelGrid columns="5" style="width: 100%" cellspacing="10">
-                                <p:outputLabel value="#{login.user.name}"/>
-                                <span class="ui-separator">
-                                    <span class="ui-icon ui-icon-grip-dotted-vertical" />
-                                </span>
-                                <p:commandLink value="Account" action= "account?faces-redirect=true" ajax="false" style="text-decoration:none;"/>   
-                                <p:commandLink value="Experiment" action= "experiment/experiment1?faces-redirect=true" ajax="false" style="text-decoration:none;"/> 
-                                <p:commandLink value="About" ajax="false" action= "/main?faces-redirect=true" style="text-decoration:none;"/> 
-                                </h:panelGrid>
+        <p:toolbar>
+            <f:facet name="left">
+                <h:form>
+                    <h:panelGrid columns="5" style="width: 100%" cellspacing="10">
+                        <p:outputLabel value="#{login.user.name}"/>
+                        <span class="ui-separator">
+                            <span class="ui-icon ui-icon-grip-dotted-vertical" />
+                        </span>
+                        <p:commandLink value="Account" action= "#{redirectPage.redirectAccount()}" ajax="false" style="text-decoration:none;"/>   
+                        <p:commandLink value="Experiment" action="problems/InteractiveNextReleaseProblem/index.xhtml?faces-redirect=true" style="text-decoration:none;"/> 
+                        <p:commandLink value="About" ajax="false" action= "#{redirectPage.redirectAbout()}" style="text-decoration:none;"/> 
+                    </h:panelGrid>
 
-                         </h:form>
-                    </f:facet>
+                    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" 
+                              showHeader="false" style="background-color: rgba(0, 0, 0, 0)">
+                        <p:graphicImage url="/resources/images/loading.gif" />
+                    </p:dialog>
 
-                    <f:facet name="right">
-                        <h:form>
-                            <p:commandButton value="Logout" action="#{login.logout()}" ajax="false" />
-                        </h:form>
-                    </f:facet>
-            </p:toolbar>  
-        
+                </h:form>
+            </f:facet>
+
+            <f:facet name="right">
+                <h:form>
+                    <p:commandButton value="Logout" action="#{login.logout()}" ajax="false" />
+                </h:form>
+            </f:facet>
+        </p:toolbar>  
+
     </ui:composition>
 </html>

@@ -20,7 +20,7 @@
                         <h:panelGrid columns="1">
                             <p:outputLabel for="explanation" value="Were the explanations about the experiment enough?"/>
                             <p:selectOneRadio id="explanation" style="margin-bottom:10px"
-                                              layout="grid" columns="1"
+                                              layout="grid" columns="1" required="true"
                                               value="#{iNRP.exp.wasWellExplained}">
                                 <f:selectItem itemLabel="Yes" itemValue="Yes"/>
                                 <f:selectItem itemLabel="No" itemValue="No"/>
@@ -31,7 +31,8 @@
                                           requirements using the fully automatic approach (first approach)?"/>
                             <p:selectOneRadio id="non_interactive" style="margin-bottom:10px" 
                                               layout="grid" columns="1"
-                                              value="#{iNRP.exp.automaticFeedback}">
+                                              value="#{iNRP.exp.automaticFeedback}"
+                                              required="true">
                                 <f:selectItem itemLabel="unsatisfactory" itemValue="unsatisfactory"/>
                                 <f:selectItem itemLabel="acceptable" itemValue="acceptable"/>
                                 <f:selectItem itemLabel="good" itemValue="good"/>
@@ -43,7 +44,7 @@
                                           classify the experience of selecting
                                           requirements using interactive optimization (second approach)?" />
                             <p:selectOneRadio id="interactive" style="margin-bottom:10px"
-                                              layout="grid" columns="1"
+                                              layout="grid" columns="1" required="true"
                                               value="#{iNRP.exp.interactiveFeedback}">
                                 <f:selectItem itemLabel="unsatisfactory" itemValue="unsatisfactory"/>
                                 <f:selectItem itemLabel="acceptable" itemValue="acceptable"/>
@@ -57,7 +58,7 @@
                                            approach in your work enviroment to select requirements 
                                            to a next relase planning?"/>
                             <p:selectOneRadio id="non_interactive_work" style="margin-bottom:10px"
-                                              layout="grid" columns="1"
+                                              layout="grid" columns="1" required="true"
                                               value="#{iNRP.exp.automaticInWorkFeedback}">
                                 <f:selectItem itemLabel="definitely" itemValue="definitely"/>
                                 <f:selectItem itemLabel="probably" itemValue="probably"/>
@@ -69,7 +70,7 @@
                             <p:outputLabel for="interactive_work" value="Would you use the interactive approach
                                            in your work enviroment to a next relase planning?"/>
                             <p:selectOneRadio id="interactive_work" style="margin-bottom:10px" 
-                                              layout="grid" columns="1"
+                                              layout="grid" columns="1" required="true"
                                               value="#{iNRP.exp.interactiveInWorkFeedback}">
                                 <f:selectItem itemLabel="definitely" itemValue="definitely"/>
                                 <f:selectItem itemLabel="probably" itemValue="probably"/>

@@ -14,7 +14,7 @@
 
     </h:head>
 
-    <h:body>
+    <h:body style="background-color: #dafccc;">
         <h:outputStylesheet library="css" name="normalize.css" />
         <h:outputStylesheet library="css" name="ion.rangeSlider.css" />
         <h:outputStylesheet library="css" name="ion.rangeSlider.skinHTML5.css" />
@@ -35,15 +35,16 @@
         </h:outputScript>   
         <ui:composition template="/restricted/layout/layout.xhtml">
 
-            <ui:define name="content">
+            <ui:define name="content" >
                 <h:form prependId="false">    
-                    <div align="center" >
-                   <h:panelGrid columns="2" styleClass="ui-widget display" style="text-align:center; font-size:24px ">
+                    <div align="center" style="background-color: #dafccc;">
+                   <h:panelGrid columns="2" styleClass="ui-widget display" style="text-align:center;
+                                font-size:24px;">
                         <h:outputLabel id="texto" value="Solution " />
                         <h:outputText id="counter" value="#{iNRP.index}"/>
                     </h:panelGrid>
                     </div>
-                    <h:panelGrid columns="2" id="panel">
+                    <h:panelGrid columns="2" id="panel" style="background-color: #dafccc;">
                         <p:dataTable disabledSelection="true" var="selectedRequirement" 
                                      value="#{iNRP.selectedRequiriments}" 
                                      rowKey="#{selectedRequirement.id}"
@@ -78,22 +79,20 @@
                         </p:dataTable>
                     </h:panelGrid>
 
-                    <div align="center" >                                         
+                    <div align="center" style="background-color: #dafccc;">                                         
                         <h:inputText id="subject_value" value="#{iNRP.rate}"/>
                         
-                        <p:commandButton value="Avaliar" 
+                        <p:commandButton value="Evaluate" 
                                          disabled="#{iNRP.avaliar}"
                                          update="panel,stop,avaliar,counter"
                                          action= "#{iNRP.evaluateSol(login.user)}"
                                          ajax="true"
-                                         icon="fa-sign-in"
                                         id="avaliar"/>
                         <p:commandButton value="Stop" 
                                          update="panel,stop,avaliar,counter"
                                          disabled="#{iNRP.stop}"
                                          action= "#{iNRP.stop(login.user)}"
                                          ajax="true"
-                                         icon="fa-sign-in" 
                                          id="stop"/>
                     </div>
                 </h:form>             

@@ -17,8 +17,6 @@
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>
                         <p:commandLink value="Account" action= "#{redirectPage.redirectAccount()}" ajax="false" style="text-decoration:none;"/>   
-                        <p:commandLink value="Experiment" action="problems/InteractiveNextReleaseProblem/index.xhtml?faces-redirect=true" style="text-decoration:none;"/> 
-                        <p:commandLink value="About" ajax="false" action= "#{redirectPage.redirectAbout()}" style="text-decoration:none;"/> 
                     </h:panelGrid>
 
                     <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />

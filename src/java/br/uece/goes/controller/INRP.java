@@ -35,7 +35,7 @@ import problems.NextReleaseProblem;
 @ManagedBean
 @SessionScoped
 public class INRP implements Serializable {
-
+    
     private Experiment exp;
     private DataSet dataset;
     private List<Requirement> selectedRequiriments;
@@ -52,7 +52,6 @@ public class INRP implements Serializable {
 
     @PostConstruct
     public void init() {
-
         stop = true;
         avaliar = false;
         dataset = new DataSet(100, 50);
@@ -157,8 +156,9 @@ public class INRP implements Serializable {
     }
 
     public String end(User user) {
-
-        exp = dao.getExperiment(user.getId());
+        if(exp == null) {
+            exp = dao.getExperiment(user.getId());
+        }
         exp.setStep(4);
         dao.update(exp);
         return "thanks.xhtml";
@@ -280,4 +280,13 @@ public class INRP implements Serializable {
         this.index = index;
     }
 
+    public Experiment getExp() {
+        return exp;
+    }
+
+    public void setExp(Experiment exp) {
+        this.exp = exp;
+    }
+
+    
 }

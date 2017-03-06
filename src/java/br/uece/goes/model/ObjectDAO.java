@@ -160,11 +160,11 @@ public class ObjectDAO {
         try {
             reqs = entityManager.createQuery(
                     "select u "
-                    + "from Requirement u ",
+                    + "from Requirement u",
                     Requirement.class)
                     .getResultList();
         } catch (NoResultException e) {
-
+            
         }
         return reqs;
     }

@@ -27,6 +27,11 @@ public class Experiment implements Serializable {
     private int nonInterativeEvaluation;
     private int interativeEvaluation;
     private int step;
+    private String wasWellExplained;
+    private String automaticFeedback;
+    private String automaticInWorkFeedback;
+    private String interactiveFeedback;
+    private String interactiveInWorkFeedback;
 
     public Long getId() {
         return id;
@@ -78,6 +83,48 @@ public class Experiment implements Serializable {
         hash = 17 * hash + this.interativeEvaluation;
         return hash;
     }
+
+    public String getWasWellExplained() {
+        return wasWellExplained;
+    }
+
+    public void setWasWellExplained(String wasWellExplained) {
+        this.wasWellExplained = wasWellExplained;
+    }
+
+    public String getAutomaticFeedback() {
+        return automaticFeedback;
+    }
+
+    public void setAutomaticFeedback(String automaticFeedback) {
+        this.automaticFeedback = automaticFeedback;
+    }
+
+    public String getAutomaticInWorkFeedback() {
+        return automaticInWorkFeedback;
+    }
+
+    public void setAutomaticInWorkFeedback(String automaticInWorkFeedback) {
+        this.automaticInWorkFeedback = automaticInWorkFeedback;
+    }
+
+    public String getInteractiveFeedback() {
+        return interactiveFeedback;
+    }
+
+    public void setInteractiveFeedback(String interactiveFeedback) {
+        this.interactiveFeedback = interactiveFeedback;
+    }
+
+    public String getInteractiveInWorkFeedback() {
+        return interactiveInWorkFeedback;
+    }
+
+    public void setInteractiveInWorkFeedback(String interactiveInWorkFeedback) {
+        this.interactiveInWorkFeedback = interactiveInWorkFeedback;
+    }
+    
+    
 
     @Override
     public boolean equals(Object obj) {

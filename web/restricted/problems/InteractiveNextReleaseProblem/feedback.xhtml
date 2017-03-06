@@ -16,9 +16,71 @@
 
             <ui:define name="content">
                 <h:form>
-                    FEEDBACK HERE!
+                    <p:panel header="FeedBack" style="padding-left: 50px">
+                        <h:panelGrid columns="1">
+                            <p:outputLabel for="explanation" value="Were the explanations about the experiment enough?"/>
+                            <p:selectOneRadio id="explanation" style="margin-bottom:10px"
+                                              layout="grid" columns="1"
+                                              value="#{iNRP.exp.wasWellExplained}">
+                                <f:selectItem itemLabel="Yes" itemValue="Yes"/>
+                                <f:selectItem itemLabel="No" itemValue="No"/>
+                            </p:selectOneRadio>
+                            
+                            <p:outputLabel for="non_interactive" value="How do you
+                                          classify the experience of selecting
+                                          requirements using the fully automatic approach (first approach)?"/>
+                            <p:selectOneRadio id="non_interactive" style="margin-bottom:10px" 
+                                              layout="grid" columns="1"
+                                              value="#{iNRP.exp.automaticFeedback}">
+                                <f:selectItem itemLabel="unsatisfactory" itemValue="unsatisfactory"/>
+                                <f:selectItem itemLabel="acceptable" itemValue="acceptable"/>
+                                <f:selectItem itemLabel="good" itemValue="good"/>
+                                <f:selectItem itemLabel="very good" itemValue="very good"/>
+                                <f:selectItem itemLabel="excellent" itemValue="excellent"/>
+                            </p:selectOneRadio>
+                            
+                            <p:outputLabel for="interactive" value="How do you
+                                          classify the experience of selecting
+                                          requirements using interactive optimization (second approach)?" />
+                            <p:selectOneRadio id="interactive" style="margin-bottom:10px"
+                                              layout="grid" columns="1"
+                                              value="#{iNRP.exp.interactiveFeedback}">
+                                <f:selectItem itemLabel="unsatisfactory" itemValue="unsatisfactory"/>
+                                <f:selectItem itemLabel="acceptable" itemValue="acceptable"/>
+                                <f:selectItem itemLabel="good" itemValue="good"/>
+                                <f:selectItem itemLabel="very good" itemValue="very good"/>
+                                <f:selectItem itemLabel="excellent" itemValue="excellent"/>
+                                
+                            </p:selectOneRadio>
+                            
+                            <p:outputLabel for="non_interactive_work" value="Would you use the fully automatic
+                                           approach in your work enviroment to select requirements 
+                                           to a next relase planning?"/>
+                            <p:selectOneRadio id="non_interactive_work" style="margin-bottom:10px"
+                                              layout="grid" columns="1"
+                                              value="#{iNRP.exp.automaticInWorkFeedback}">
+                                <f:selectItem itemLabel="definitely" itemValue="definitely"/>
+                                <f:selectItem itemLabel="probably" itemValue="probably"/>
+                                <f:selectItem itemLabel="maybe" itemValue="maybe"/>
+                                <f:selectItem itemLabel="probably not" itemValue="probably not"/>
+                                <f:selectItem itemLabel="definitely not" itemValue="definitely not"/>
+                            </p:selectOneRadio>
+                            
+                            <p:outputLabel for="interactive_work" value="Would you use the interactive approach
+                                           in your work enviroment to a next relase planning?"/>
+                            <p:selectOneRadio id="interactive_work" style="margin-bottom:10px" 
+                                              layout="grid" columns="1"
+                                              value="#{iNRP.exp.interactiveInWorkFeedback}">
+                                <f:selectItem itemLabel="definitely" itemValue="definitely"/>
+                                <f:selectItem itemLabel="probably" itemValue="probably"/>
+                                <f:selectItem itemLabel="maybe" itemValue="maybe"/>
+                                <f:selectItem itemLabel="probably not" itemValue="probably not"/>
+                                <f:selectItem itemLabel="definitely not" itemValue="definitely not"/>
+                            </p:selectOneRadio>
+                            <p:commandButton value="Done" action="#{iNRP.end(login.user)}"/>
+                        </h:panelGrid>
+                    </p:panel>
                 </h:form>
-                <p:commandButton value="End" action= "#{iNRP.end(login.user)}" />
             </ui:define>
         </ui:composition>
     </h:body>

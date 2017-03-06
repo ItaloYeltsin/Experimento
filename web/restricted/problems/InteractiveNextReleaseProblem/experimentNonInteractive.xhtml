@@ -39,7 +39,7 @@
                 <h:form prependId="false">    
                     <div align="center" >
                    <h:panelGrid columns="2" styleClass="ui-widget display" style="text-align:center; font-size:24px ">
-                        <h:outputLabel id="texto" value="Automatic Solution" />
+                        <h:outputLabel id="texto" value="Final Solution" />
                     </h:panelGrid>
                     </div>
                     <h:panelGrid columns="2" id="panel">
@@ -66,7 +66,7 @@
                                      scrollHeight="500"
                                      >
                             <f:facet name="header">
-                                Non-Selected Requirements
+                                Not Selected Requirements
                             </f:facet>
                             <p:column headerText="Id" style="width:32px; text-align:center">
                                 <h:outputText value="#{noSelectedRequirement.id}" />
@@ -80,9 +80,8 @@
                     <div align="center" >                                         
                         <h:inputText id="subject_value" value="#{iNRP.rate}"/>
                         
-                        <p:commandButton value="Avaliar" 
+                        <p:commandButton value="Evaluate" 
                                          ajax="true"
-                                         icon="fa-sign-in"
                                          action= "#{iNRP.executeNonInteractive(login.user)}"/>
                     </div>
                 </h:form>             

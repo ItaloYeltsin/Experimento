@@ -8,14 +8,18 @@
       >      
     <h:head>
         <title>Main</title>
+        
     </h:head>
 
     <h:body>      	
         <ui:composition template="/restricted/layout/layout.xhtml">
+            <ui:define name="head">
+                <meta http-equiv="refresh" content="5;URL=#{request.contextPath}/faces/restricted/main.xhtml" />
+            </ui:define>
             <ui:define name="content">
-                <h:form>
-                    Thanks for your contribuited!
-                </h:form>
+                <p:panel style="margin: auto 0; width: 460px;" header="Thank you!">
+                    We truly value the information you have provided.
+                </p:panel>
             </ui:define>
         </ui:composition>
     </h:body>

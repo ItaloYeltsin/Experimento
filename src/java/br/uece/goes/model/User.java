@@ -25,9 +25,55 @@ public class User implements Serializable {
     private String email;
     private String password;
     private String name;
+    private String educationLevel;
+    private String profession;
+    private int expTime;
+    private String tIExpClassif;
+    private String rpClassif;
+
+    public String getEducationLevel() {
+        return educationLevel;
+    }
+
+    public void setEducationLevel(String educationLevel) {
+        this.educationLevel = educationLevel;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public int getExpTime() {
+        return expTime;
+    }
+
+    public void setExpTime(int expTime) {
+        this.expTime = expTime;
+    }
+
+    public String gettIExpClassif() {
+        return tIExpClassif;
+    }
+
+    public void settIExpClassif(String tIExpClassif) {
+        this.tIExpClassif = tIExpClassif;
+    }
+
+    public String getRpClassif() {
+        return rpClassif;
+    }
+
+    public void setRpClassif(String rpClassif) {
+        this.rpClassif = rpClassif;
+    }
+
     
     
-     public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -83,5 +129,5 @@ public class User implements Serializable {
     public String toString() {
         return "br.goes.uece.model.User[ id=" + id + " ]";
     }
-     
+
 }

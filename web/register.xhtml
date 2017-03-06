@@ -7,35 +7,80 @@
       >
     <h:head>
         <title>Register</title>
+        <h:outputStylesheet library="css" name="registerCol.css"/>
     </h:head>
     <h:body>
         <h:form>
-            <p:panel id="panel" header="Register" style="margin: auto; width: 400px; left: -12.516px; top: 191px;">
+            <p:panel id="panel" header="Register" style="margin: auto; width: 500px; left: -12.516px; top: 191px;">
 
                 <p:messages id="msgs" />
 
-                <h:panelGrid columns="2" cellpadding="5">
+                <h:panelGrid columns="2" cellpadding="5" columnClasses="forty-percent top-alignment, sixty-percent">
                     
                     <p:outputLabel for="name" value="Name:" />
-                    <p:inputText id="name" value="#{register.name}" required="true" label="Name"/>
+                    <p:inputText id="name" value="#{register.name}" required="true"
+                                 label="Name" style="width: 100%"/>
                     
                     <p:outputLabel for="email" value="Email:" />
-                    <p:inputText id="email" value="#{register.email}" required="true" label="Email" validatorMessage="Invalid email format">
-                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                    <p:inputText id="email" value="#{register.email}" required="true"
+                                 label="Email" validatorMessage="Invalid email format" 
+                                 style="width: 100%">
+                    <f:validateRegex 
+                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"
+                        />
                     </p:inputText>
                    
                     <p:outputLabel for="password" value="Password:" />
-                    <p:password id="password" value="#{register.password}" match="confirmPassword" required="true" label="password"
+                    <p:password id="password" value="#{register.password}" match="confirmPassword"
+                                required="true" label="password"
                      validatorMessage="These passwords don't match. Try again?"/>
                     
                     <p:outputLabel for="confirmPassword" value="Confirm Password:" />
-                    <p:password id="confirmPassword" required="true" label="confirmPassword" /> 
-             
+                    <p:password id="confirmPassword" required="true" label="confirmPassword" />
+                    <p:separator/> <p:separator />
+                    <p:outputLabel for="educationLevel" value="Which is your qualification level?" />
+                    <p:selectOneRadio id="educationLevel" value="#{register.educationLevel}"
+                                      layout="grid" columns="1" required="true">
+                        <f:selectItem itemLabel="Completed High School" itemValue="Completed High School"/>
+                        <f:selectItem itemLabel="Undergraduate" itemValue="Undergraduate"/>                        
+                        <f:selectItem itemLabel="Graduate" itemValue="Graduate"/>
+                        <f:selectItem itemLabel="Postgraduate" itemValue="Postgraduate"/>
+                    </p:selectOneRadio>
+                    <p:separator /><p:separator />
+                    <p:outputLabel for="profession" value="Which is your profession?" />
+                    <p:inputText id="profession" value="#{register.profession}" style="width: 100%"
+                                 required="true"/>
+                    <p:separator /><p:separator />
+                    <p:outputLabel for="tIExpTime" value="How much experience do you have in IT (years)?" />
+                    <p:inputMask id="tIExpTime"  mask="99" value="#{register.expTime}" style="width: 50px"
+                                 required="true"/>
+                    <p:separator /><p:separator />
+                    <p:outputLabel for="tIExpectClassif" value="How do you classify your experience in software development?" />
+                    <p:selectOneRadio id="tIExpectClassif" value="#{register.TIExpClassif}"
+                                      layout="grid" columns="1" required="true">
+                        <f:selectItem itemLabel="High" itemValue="High"/>                        
+                        <f:selectItem itemLabel="Medium" itemValue="Medium"/>
+                        <f:selectItem itemLabel="Low" itemValue="Low"/>
+                    </p:selectOneRadio>
+                    <p:separator /><p:separator />
+                    <p:outputLabel for="rpClassif"  
+                                   value="How do you classify your experiece in release planning?" />
+                    <p:selectOneRadio id="rpClassif" value="#{register.rpClassif}"
+                                      layout="grid" columns="1" required="true">
+                        <f:selectItem itemLabel="High" itemValue="High"/>                        
+                        <f:selectItem itemLabel="Medium" itemValue="Medium"/>
+                        <f:selectItem itemLabel="Low" itemValue="Low"/>
+                    </p:selectOneRadio>
+                    
                 </h:panelGrid>
                 
                 <h:panelGrid columns="2" style="width: 100%" cellspacing="10">
-                    <p:commandButton value="Cancel" style="width: 100%" action= "index.xhtml?faces-redirect=true" update="panel" immediate="true"/>
-                    <p:commandButton value="Save" style="width: 100%" action= "#{register.save()}" update="panel" icon="fa-sign-in" />
+                    <p:commandButton value="Cancel" style="width: 100%" 
+                                     action= "index.xhtml?faces-redirect=true" 
+                                     update="panel" immediate="true"/>
+                    <p:commandButton value="Save" style="width: 100%" action= "#{register.save()}"
+                                     update="panel" />
+                    
                     
                 </h:panelGrid>
                 

@@ -25,12 +25,61 @@ public class Register {
         private String email;
         private String password;
         private User user;
+        private String educationLevel;
+        private String profession;
+        private int expTime;
+        private String tIExpClassif;
+        private String rpClassif;
+        
         private ObjectDAO dao;
     
     public Register() {
         dao = new ObjectDAO();
     }
 
+    public String getTIExpClassif() {
+        return tIExpClassif;
+    }
+
+    public void setTIExpClassif(String tIExpClassif) {
+        this.tIExpClassif = tIExpClassif;
+    }
+    
+
+    public String getEducationLevel() {
+        return educationLevel;
+    }
+
+    public void setEducationLevel(String educationLevel) {
+        this.educationLevel = educationLevel;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public int getExpTime() {
+        return expTime;
+    }
+
+    public void setExpTime(int expTime) {
+        this.expTime = expTime;
+    }
+
+
+    public String getRpClassif() {
+        return rpClassif;
+    }
+
+    public void setRpClassif(String rpClassif) {
+        this.rpClassif = rpClassif;
+    }
+
+    
     public User getUser() {
         return user;
     }
@@ -83,8 +132,13 @@ public class Register {
             user.setName(name);
             user.setEmail(email);
             user.setPassword(TransformaStringMD5.md5(password));
+            user.setEducationLevel(educationLevel);
+            user.setProfession(profession);
+            user.setExpTime(expTime);
+            user.setRpClassif(rpClassif);
+            user.settIExpClassif(tIExpClassif);
             dao.save(this.user); 
-            FacesMessage fm = new FacesMessage("Register realized with success!"); 
+            FacesMessage fm = new FacesMessage("User successfully registred!"); 
             fm.setSeverity(FacesMessage.SEVERITY_INFO);
             FacesContext.getCurrentInstance().addMessage("Successful registration", fm);
         } else {    

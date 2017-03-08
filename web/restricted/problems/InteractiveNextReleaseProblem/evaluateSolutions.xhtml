@@ -34,22 +34,23 @@
             });
         </h:outputScript>   
         <ui:composition template="/restricted/layout/layout.xhtml">
-
+             <ui:define name="head">
+                <h:outputStylesheet library="css" name="tables.css"/>
+            </ui:define>
             <ui:define name="content" >
+                <a name="top"/>
                 <h:form prependId="false">    
-                    <div align="center" style="background-color: #dafccc;">
-                   <h:panelGrid columns="2" styleClass="ui-widget display" style="text-align:center;
-                                font-size:24px;">
+                    <div align="center">
+                   <h:panelGrid columns="2" styleClass="ui-widget display" 
+                                style="text-align:center; font-size:24px; margin-top: 20px">
                         <h:outputLabel id="texto" value="Solution " />
                         <h:outputText id="counter" value="#{iNRP.index}"/>
                     </h:panelGrid>
                     </div>
-                    <h:panelGrid columns="2" id="panel" style="background-color: #dafccc;">
+                    <h:panelGrid columns="2" id="panel" columnClasses="align-top left-table, align-top">
                         <p:dataTable disabledSelection="true" var="selectedRequirement" 
                                      value="#{iNRP.selectedRequiriments}" 
                                      rowKey="#{selectedRequirement.id}"
-                                     scrollable="true" 
-                                     scrollHeight="500"
                                      >
                             <f:facet name="header">
                                 Selected Requirements
@@ -57,35 +58,34 @@
                             <p:column headerText="Id" style="width:32px; text-align:center">
                                 <h:outputText value="#{selectedRequirement.id}" />
                             </p:column>
-                            <p:column headerText="Description" style="text-align:center" >
+                            <p:column headerText="Description">
                                 <h:outputText value="#{selectedRequirement.description}" />
                             </p:column>
                         </p:dataTable>
                         <p:dataTable disabledSelection="true" var="noSelectedRequirement" 
                                      value="#{iNRP.noSelectedRequiriments}" 
                                      rowKey="#{noSelectedRequirement.id}" 
-                                     scrollable="true"
-                                     scrollHeight="500"
                                      >
                             <f:facet name="header">
-                                Non-Selected Requirements
+                                Not Selected Requirements
                             </f:facet>
                             <p:column headerText="Id" style="width:32px; text-align:center">
                                 <h:outputText value="#{noSelectedRequirement.id}" />
                             </p:column>
-                            <p:column headerText="Description" style="text-align:center" >
+                            <p:column headerText="Description">
                                 <h:outputText value="#{noSelectedRequirement.description}" />
                             </p:column>
                         </p:dataTable>
                     </h:panelGrid>
 
-                    <div align="center" style="background-color: #dafccc;">                                         
+                    <div id="evaluation" align="center">                                         
                         <h:inputText id="subject_value" value="#{iNRP.rate}"/>
                         
-                        <p:commandButton value="Evaluate" 
+                        <p:commandButton value="Evaluate (#{iNRP.index})" 
                                          disabled="#{iNRP.avaliar}"
                                          update="panel,stop,avaliar,counter"
-                                         action= "#{iNRP.evaluateSol(login.user)}"
+                                         onclick="javascript:window.location='#top'"
+                                         actionListener="#{iNRP.evaluateSol(login.user)}"
                                          ajax="true"
                                         id="avaliar"/>
                         <p:commandButton value="Stop" 

@@ -111,7 +111,7 @@ public class INRP implements Serializable {
         return "evaluateSolutions.xhtml";
     }
 
-    public void evaluateSol(User user) {
+    public String evaluateSol(User user) {
         if (index <= 99) {
             if (index == 10) {
                 stop = false;
@@ -126,6 +126,7 @@ public class INRP implements Serializable {
         } else {
             avaliar = true;
         }
+        return "#top";
     }
 
     public String stop(User user) {

@@ -34,20 +34,22 @@
             });
         </h:outputScript>   
         <ui:composition template="/restricted/layout/layout.xhtml">
-
+            <ui:define name="head">
+                <h:outputStylesheet library="css" name="tables.css"/>
+            </ui:define>
             <ui:define name="content">
+                <a name="top"/>
                 <h:form prependId="false">    
                     <div align="center" >
-                   <h:panelGrid columns="2" styleClass="ui-widget display" style="text-align:center; font-size:24px ">
+                   <h:panelGrid columns="2" styleClass="ui-widget display" 
+                                style="text-align:center; font-size:24px; margin-top:20px; ">
                         <h:outputLabel id="texto" value="Final Solution" />
                     </h:panelGrid>
                     </div>
-                    <h:panelGrid columns="2" id="panel">
+                    <h:panelGrid columns="2" id="panel" columnClasses="align-top left-table, align-top">
                         <p:dataTable disabledSelection="true" var="selectedRequirement" 
                                      value="#{iNRP.selectedRequiriments}" 
                                      rowKey="#{selectedRequirement.id}"
-                                     scrollable="true" 
-                                     scrollHeight="500"
                                      >
                             <f:facet name="header">
                                 Selected Requirements
@@ -55,15 +57,13 @@
                             <p:column headerText="Id" style="width:32px; text-align:center">
                                 <h:outputText value="#{selectedRequirement.id}" />
                             </p:column>
-                            <p:column headerText="Description" style="text-align:center" >
+                            <p:column headerText="Description">
                                 <h:outputText value="#{selectedRequirement.description}" />
                             </p:column>
                         </p:dataTable>
                         <p:dataTable disabledSelection="true" var="noSelectedRequirement" 
                                      value="#{iNRP.noSelectedRequiriments}" 
                                      rowKey="#{noSelectedRequirement.id}" 
-                                     scrollable="true"
-                                     scrollHeight="500"
                                      >
                             <f:facet name="header">
                                 Not Selected Requirements
@@ -71,18 +71,17 @@
                             <p:column headerText="Id" style="width:32px; text-align:center">
                                 <h:outputText value="#{noSelectedRequirement.id}" />
                             </p:column>
-                            <p:column headerText="Description" style="text-align:center" >
+                            <p:column headerText="Description">
                                 <h:outputText value="#{noSelectedRequirement.description}" />
                             </p:column>
                         </p:dataTable>
                     </h:panelGrid>
 
-                    <div align="center" >                                         
+                    <div id="evaluation" align="center" >                                         
                         <h:inputText id="subject_value" value="#{iNRP.rate}"/>
                         
-                        <p:commandButton value="Avaliar" 
+                        <p:commandButton value="Evaluate" 
                                          ajax="true"
-                                         icon="fa-sign-in"
                                          action= "#{iNRP.executeInteractive(login.user)}"/>
                     </div>
                 </h:form>             

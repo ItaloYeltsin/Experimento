@@ -25,15 +25,15 @@
                     grid: true,
                     prettify: function (n) {
                         if (n &gt;= 0 &amp;&amp; n &lt; 25) {
-                            return "unsatisfactory";
+                            return "very unsatisfactory";
                         }else if(n &gt;= 25 &amp;&amp; n &lt; 50) {
-                            return "acceptable";
+                            return "unsatisfactory";
                             }else if(n &gt;= 50 &amp;&amp; n &lt; 75) {
-                            return "good";
+                            return "neutral";
                         }else if(n &gt;= 75 &amp;&amp; n &lt; 100) {
-                            return "very good";
+                            return "satisfactory";
                         }else if(n === 100) {
-                            return "excellent";
+                            return "very satisfactory";
                         }
                         return "";
                     }

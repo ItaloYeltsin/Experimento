@@ -33,11 +33,11 @@
                                               layout="grid" columns="1"
                                               value="#{iNRP.exp.automaticFeedback}"
                                               required="true">
+                                <f:selectItem itemLabel="very unsatisfactory" itemValue="very unsatisfactory"/>
                                 <f:selectItem itemLabel="unsatisfactory" itemValue="unsatisfactory"/>
-                                <f:selectItem itemLabel="acceptable" itemValue="acceptable"/>
-                                <f:selectItem itemLabel="good" itemValue="good"/>
-                                <f:selectItem itemLabel="very good" itemValue="very good"/>
-                                <f:selectItem itemLabel="excellent" itemValue="excellent"/>
+                                <f:selectItem itemLabel="neutral" itemValue="neutral"/>
+                                <f:selectItem itemLabel="satisfactory" itemValue="satisfactory"/>
+                                <f:selectItem itemLabel="very satisfactory" itemValue="very satisfactory"/>
                             </p:selectOneRadio>
                             
                             <p:outputLabel for="interactive" value="How do you
@@ -46,11 +46,11 @@
                             <p:selectOneRadio id="interactive" style="margin-bottom:10px"
                                               layout="grid" columns="1" required="true"
                                               value="#{iNRP.exp.interactiveFeedback}">
+                                <f:selectItem itemLabel="very unsatisfactory" itemValue="very unsatisfactory"/>
                                 <f:selectItem itemLabel="unsatisfactory" itemValue="unsatisfactory"/>
-                                <f:selectItem itemLabel="acceptable" itemValue="acceptable"/>
-                                <f:selectItem itemLabel="good" itemValue="good"/>
-                                <f:selectItem itemLabel="very good" itemValue="very good"/>
-                                <f:selectItem itemLabel="excellent" itemValue="excellent"/>
+                                <f:selectItem itemLabel="neutral" itemValue="neutral"/>
+                                <f:selectItem itemLabel="satisfactory" itemValue="satisfactory"/>
+                                <f:selectItem itemLabel="very satisfactory" itemValue="very satisfactory"/>
                                 
                             </p:selectOneRadio>
                             

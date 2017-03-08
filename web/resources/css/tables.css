@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : italo
 */
 
-.ui-datatable { margin: 20px; text-align: left; }
+.ui-datatable {margin-top: 20px;}
 .align-top{vertical-align: top;}
-.left-table{width: 60%}
+.left-table{width: 60%; padding-right: 40px;}
 #evaluation{margin: 20px}

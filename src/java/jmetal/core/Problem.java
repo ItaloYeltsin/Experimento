@@ -237,4 +237,5 @@ public abstract class Problem implements Serializable {
     }
     return result;
   } // getNumberOfBits();
+    
 } // Problem

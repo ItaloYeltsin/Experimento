@@ -13,12 +13,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jmetal.core.Problem;
 import jmetal.core.Solution;
+import jmetal.core.SolutionSet;
 import jmetal.encodings.solutionType.BinarySolutionType;
 import jmetal.encodings.variable.Binary;
 import jmetal.util.JMException;
 import weka.classifiers.Classifier;
 import weka.classifiers.functions.MultilayerPerceptron;
-import weka.core.Instances;
 
 /**
  *
@@ -31,6 +31,8 @@ public class NextReleaseProblem extends Problem {
     private DataSet dataset;
     private double budget;
     private double[] parameters = {1, 1};
+    private double maxScore = 0;
+    private double maxShe = 0;
 
     public NextReleaseProblem(String solutionType, Integer numberOfBits) {
 
@@ -94,26 +96,19 @@ public class NextReleaseProblem extends Problem {
     @Override
     public void evaluate(Solution solution) throws JMException {
 
-        Binary variable;
-        double score = 0;
-        double cost = 0;
+        double score = evaluateScore(solution);
+        double cost = evaluateCost(solution);
         double she = 0;
-
-        variable = ((Binary) solution.getDecisionVariables()[0]);
-
-        for (int i = 0; i < variable.getNumberOfBits(); i++) {
-            if (variable.bits_.get(i)) {
-                score += reqList.get(i).getImportance();
-                cost += reqList.get(i).getCost();
-            }
-        }
 
         if (model != null) {
             she = evaluateShe(solution, dataset);
             System.out.println("valor de She: " + she);
         }
 
-        double fitness = parameters[0] * score + parameters[1] * she;
+        System.out.println("MaxScore: " + maxScore);
+        System.out.println("MaxShe: " + maxShe);
+        
+        double fitness = parameters[0] * (score / maxScore) + parameters[1] * (she / maxShe);
 
         // NRP is a maximization problem: multiply by -1 to minimize
         if (cost <= budget) {
@@ -124,6 +119,38 @@ public class NextReleaseProblem extends Problem {
             solution.setObjective(1, cost);
         }
 
+    }
+
+    public double evaluateScore(Solution solution) {
+
+        Binary variable;
+        double score = 0;
+
+        variable = ((Binary) solution.getDecisionVariables()[0]);
+
+        for (int i = 0; i < variable.getNumberOfBits(); i++) {
+            if (variable.bits_.get(i)) {
+                score += reqList.get(i).getImportance();
+            }
+        }
+
+        return score;
+    }
+
+    public double evaluateCost(Solution solution) {
+
+        Binary variable;
+        double cost = 0;
+
+        variable = ((Binary) solution.getDecisionVariables()[0]);
+
+        for (int i = 0; i < variable.getNumberOfBits(); i++) {
+            if (variable.bits_.get(i)) {
+                cost += reqList.get(i).getCost();
+            }
+        }
+
+        return cost;
     }
 
     public double evaluateShe(Solution solution, DataSet dataset) {
@@ -145,5 +172,44 @@ public class NextReleaseProblem extends Problem {
         return budget;
     }
 
-    
+    public void getMaxScore(SolutionSet population) {
+
+        for (int i = 0; i < population.size(); i++) {
+
+            double score = 0;
+
+            Binary variable = ((Binary) population.get(i).getDecisionVariables()[0]);
+
+            for (int j = 0; j < variable.getNumberOfBits(); j++) {
+                if (variable.bits_.get(j)) {
+                    score += reqList.get(j).getImportance();
+                }
+            }
+
+            if (score > maxScore) {
+                maxScore = score;
+            }
+
+        }
+
+    }
+
+    public void getMaxShe(SolutionSet population) {
+
+        for (int i = 0; i < population.size(); i++) {
+
+            double she = 1;
+
+            if (model != null) {
+                she = evaluateShe(population.get(i), dataset);
+            }
+
+            if (she > maxShe) {
+                maxShe = she;
+            }
+
+        }
+
+    }
+
 }

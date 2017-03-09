@@ -84,6 +84,8 @@ public class Experiment implements Serializable {
         return hash;
     }
 
+    
+    
     public String getWasWellExplained() {
         return wasWellExplained;
     }

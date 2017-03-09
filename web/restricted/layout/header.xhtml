@@ -11,8 +11,10 @@
         <p:toolbar>
             <f:facet name="left">
                 <h:form>
-                    <h:panelGrid columns="5" style="width: 100%" cellspacing="10">
-                        <p:outputLabel value="#{login.user.name}"/>
+                    <h:panelGrid columns="5" style="width: 100%">
+                        <p:commandLink value="Home" action="/restricted/index.xhtml?faces-redirect=true"
+                                         style="text-decoration: none"/>
+                        
                         <span class="ui-separator">
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>
@@ -21,8 +23,10 @@
 
                     <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
                     <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" 
-                              showHeader="false" style="background-color: rgba(0, 0, 0, 0)">
-                        <p:graphicImage url="/resources/images/loading.gif" />
+                              showHeader="false" style="background: transparent; border: none;">
+                        <h:graphicImage url="/resources/images/loading.svg" 
+                                        style="border:0; background: transparent; border-image: none"/>
+                        
                     </p:dialog>
 
                 </h:form>

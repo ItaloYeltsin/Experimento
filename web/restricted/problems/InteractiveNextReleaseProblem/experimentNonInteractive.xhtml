@@ -15,29 +15,15 @@
     </h:head>
 
     <h:body>
-        <h:outputStylesheet library="css" name="normalize.css" />
-        <h:outputStylesheet library="css" name="ion.rangeSlider.css" />
-        <h:outputStylesheet library="css" name="ion.rangeSlider.skinHTML5.css" />
-        <h:outputScript library="js" name="jquery-3.1.1.min.js" target="head" />
-        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
-        <h:outputScript name="js/ion.rangeSlider.min.js"/>
-        <h:outputScript target="head">
-            var $j = jQuery;
-            $j("subject_value").ionRangeSlider({
-            grid: true,
-            from: 5,
-            values: [
-            "Very bad", "Bad",
-            "Indifferent", "Very good",
-            "Excelent"
-            ]
-            });
-        </h:outputScript>   
+           
         <ui:composition template="/restricted/layout/layout.xhtml">
             <ui:define name="head">
                 <h:outputStylesheet library="css" name="tables.css"/>
             </ui:define>
             <ui:define name="content">
+                <div class="header">
+                    <div id="title"> Non-Interactive Approach </div>
+                </div>
                 <h:form prependId="false">    
                     <div align="center" >
                    <h:panelGrid columns="2" styleClass="ui-widget display" 

@@ -12,3 +12,15 @@ and open the template in the editor.
 .align-top{vertical-align: top;}
 .left-table{width: 60%; padding-right: 40px;}
 #evaluation{margin: 20px}
+.header{
+    margin-top: 20px; height: 40px; text-align: center; background: #2399E5;
+    border-radius: 3px; border-width: 2px; border-style: solid;
+    border-color: #156090; display: table; width: 100%;
+      
+}
+
+#title {
+    display: table-cell;
+    vertical-align: middle;
+    color: white; font-family: 'Droid serif', serif; font-size: 36px; font-weight: 400; font-style: italic; line-height: 44px; margin: 0 0 12px; text-align: center;
+}

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"         
+      >      
+    <h:head>
+        <title>Main</title>
+    </h:head>
+
+    <h:body>
+
+        <ui:composition template="/restricted/layout/layout.xhtml">
+            <ui:define name="content">
+
+                <p:accordionPanel multiple="true" activeIndex="0,1,2">
+                    <p:tab title="Introduction" >
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <h:outputText
+                                value="The story begins as Don Vito Corleone..." />
+                        </h:panelGrid>
+                    </p:tab>
+                    
+                    <p:tab title="Subject System">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputText value="Francis Ford Coppola's legendary..." />
+                            <iframe style="width: 1200px; height: 550px" src="https://docs.google.com/spreadsheets/d/1Wn-bihnmJq3kp6mbkqR7wCGCuxQNaLbQUN6RJ1J3NKI/pubhtml?gid=0&amp;single=true&amp;widget=false&amp;headers=true"></iframe>
+                        </h:panelGrid>
+                    </p:tab>
+                    
+                    <p:tab title="Your Role">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <p:outputLabel>
+                                C+asas=a=s=a=s salspa lspal psla pspaslpslapsp slap  salp
+                                 alsa slpa ls slapsla slapssl pa
+                            </p:outputLabel>
+                            <p:commandButton value="Begin" action="#{iNRP.beginExperiment(login.user)}" style="align-self: flex-end"/>
+                        </h:panelGrid>
+                    </p:tab>
+                </p:accordionPanel>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+
+
+</html>
+

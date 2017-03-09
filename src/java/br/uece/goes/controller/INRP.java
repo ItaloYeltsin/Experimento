@@ -73,7 +73,7 @@ public class INRP implements Serializable {
             exp = dao.getExperiment(user.getId());
         }
 
-        return "beginNonInteractive.xhtml";
+        return "problems/InteractiveNextReleaseProblem/beginNonInteractive.xhtml?faces-redirect=true";
     }
 
     public String fowardNonInterative(User user) {

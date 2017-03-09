@@ -74,7 +74,7 @@ public class Login {
             System.out.print(user.getId());
             FacesContext.getCurrentInstance().getExternalContext()
                     .getSessionMap().put("loggedUser", user);
-            return "/restricted/main.xhtml";
+            return "/restricted/index.xhtml";
         }
         FacesContext.getCurrentInstance().validationFailed();
         FacesMessage fm = new FacesMessage("Email and password do not match");

@@ -39,7 +39,7 @@ public class INRPFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         User user = null;
-        ObjectDAO dao = new ObjectDAO();
+        ObjectDAO dao = ObjectDAO.getInstance();
         HttpSession sess = ((HttpServletRequest) request).getSession(false);
         int step;
 

@@ -29,7 +29,7 @@ public class RecoverPassword {
     
     
     public RecoverPassword() {
-        dao = new ObjectDAO();
+        dao = ObjectDAO.getInstance();
     }
 
     public String getEmail() {

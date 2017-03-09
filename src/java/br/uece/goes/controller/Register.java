@@ -34,7 +34,7 @@ public class Register {
         private ObjectDAO dao;
     
     public Register() {
-        dao = new ObjectDAO();
+        dao = ObjectDAO.getInstance();
     }
 
     public String getTIExpClassif() {

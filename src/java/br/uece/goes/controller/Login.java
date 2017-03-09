@@ -27,7 +27,7 @@ public class Login {
     private ObjectDAO dao;
 
     public Login() {
-        dao = new ObjectDAO();
+        dao = ObjectDAO.getInstance();
     }
 
     public User getUser() {

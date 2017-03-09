@@ -34,7 +34,7 @@ public class NextReleaseProblem extends Problem {
 
     public NextReleaseProblem(String solutionType, Integer numberOfBits) {
 
-        reqList = new ObjectDAO().getAllReq();
+        reqList = ObjectDAO.getInstance().getAllReq();
         numberOfVariables_ = 1;
         numberOfObjectives_ = 2;
         numberOfConstraints_ = 0;
@@ -63,7 +63,7 @@ public class NextReleaseProblem extends Problem {
             dataset = data;
             model = new MultilayerPerceptron();
             model.buildClassifier(dataset.getInstances());
-            reqList = new ObjectDAO().getAllReq();
+            reqList = ObjectDAO.getInstance().getAllReq();
             numberOfVariables_ = 1;
             numberOfObjectives_ = 2;
             numberOfConstraints_ = 0;

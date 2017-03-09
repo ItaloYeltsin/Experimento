@@ -6,6 +6,8 @@
 package br.uece.goes.model;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import org.hibernate.Query;
@@ -21,10 +23,10 @@ import org.hibernate.cfg.Configuration;
  * @author italo
  */
 public class ObjectDAO {
+    private static ObjectDAO oDAO;
+    private SessionFactory sessionFactory;
 
-    SessionFactory sessionFactory;
-
-    public ObjectDAO() {
+    private ObjectDAO() {
         try {
             setUp();
         } catch (Exception ex) {
@@ -32,6 +34,13 @@ public class ObjectDAO {
         }
     }
 
+    public static ObjectDAO getInstance() {
+        if (oDAO == null) {
+            oDAO = new ObjectDAO();
+        }
+        return oDAO;
+    }
+            
     protected void setUp() throws Exception {
         // A SessionFactory is set up once for an application!
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -47,9 +56,20 @@ public class ObjectDAO {
         }
     }
 
+    private Session openSession(){
+        if(sessionFactory == null) {
+            try {
+                setUp();
+            } catch (Exception ex) {
+                Logger.getLogger(ObjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return sessionFactory.openSession();
+    }
+    
     public void save(Object p) {
-
-        Session s = sessionFactory.openSession();
+        
+        Session s = openSession();
         s.beginTransaction();
         s.persist(p);
         s.getTransaction().commit();
@@ -58,7 +78,7 @@ public class ObjectDAO {
 
     public void update(Object p) {
 
-        Session s = sessionFactory.openSession();
+        Session s = openSession();
         s.beginTransaction();
         s.update(p);
         s.getTransaction().commit();
@@ -66,7 +86,7 @@ public class ObjectDAO {
     }
 
     public User getUser(String email, String password) {
-        Session s = sessionFactory.openSession();
+        Session s = openSession();
         EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
         User user = null;
         try {
@@ -87,7 +107,7 @@ public class ObjectDAO {
     }
 
     public User getUser(String email) {
-        Session s = sessionFactory.openSession();
+        Session s = openSession();
         EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
         User user = null;
         try {
@@ -106,7 +126,7 @@ public class ObjectDAO {
     }
 
     public Experiment getExperiment(Long userId) {
-        Session s = sessionFactory.openSession();
+        Session s = openSession();
         EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
         Experiment experiment = null;
         try {
@@ -125,7 +145,7 @@ public class ObjectDAO {
     }
 
     public String getPassword(String email) {
-        Session s = sessionFactory.openSession();
+        Session s = openSession();
         EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
         User user = null;
         try {
@@ -144,9 +164,7 @@ public class ObjectDAO {
     }
 
     public void delete(Object object) {
-        SessionFactory sessionFactory = new Configuration().configure()
-                .buildSessionFactory();
-        Session s = sessionFactory.openSession();
+        Session s = openSession();
         s.beginTransaction();
         s.delete(object);
         s.getTransaction().commit();
@@ -154,7 +172,7 @@ public class ObjectDAO {
     }
 
     public List<Requirement> getAllReq() {
-        Session s = sessionFactory.openSession();
+        Session s = openSession();
         EntityManager entityManager = s.getEntityManagerFactory().createEntityManager();
         List<Requirement> reqs = null;
         try {

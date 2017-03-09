@@ -55,7 +55,7 @@ public class INRP implements Serializable {
         stop = true;
         avaliar = false;
         dataset = new DataSet(100, 50);
-        dao = new ObjectDAO();
+        dao = ObjectDAO.getInstance();
         rate = 50;
         index = 1;
     }

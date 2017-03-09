@@ -15,7 +15,7 @@ import br.uece.goes.model.User;
  */
 public class CarregarUser {
     public static void main(String [] asas) {
-        ObjectDAO dao = new ObjectDAO();
+        ObjectDAO dao = ObjectDAO.getInstance();
         User u = new User();
         u.setName("Italo Yeltsin Medeiros Bruno");
         u.setEmail("br.yeltsin@gmail.com");

@@ -20,7 +20,7 @@ public class CarregarRequirements {
             
             ReaderInstance instance;
             instance = new ReaderInstance("src/instances/I_S_50_50.txt");                
-            ObjectDAO dao = new ObjectDAO();      
+            ObjectDAO dao = ObjectDAO.getInstance();      
             String desc[] = instance.getDescription();
             double importance[] = instance.getValueReqPod();
             double cost[] = instance.getCost();

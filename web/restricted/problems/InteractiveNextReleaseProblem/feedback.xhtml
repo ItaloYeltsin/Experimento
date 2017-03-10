@@ -15,63 +15,69 @@
         <ui:composition template="/restricted/layout/layout.xhtml">
 
             <ui:define name="content">
-                <h:form>
-                    <p:panel header="FeedBack" >
+                <h:form>                 
+                    <p:panel header="FeedBack">
+                        <p:messages id="msgs" />
                         <h:panelGrid columns="1" style="padding: 20px">
                             <p:outputLabel for="explanation" value="Were the explanations about the experiment enough?"/>
                             <p:selectOneRadio id="explanation" style="margin-bottom:10px"
                                               layout="grid" columns="1" required="true"
-                                              value="#{iNRP.exp.wasWellExplained}">
+                                              value="#{iNRP.exp.wasWellExplained}"
+                                              validatorMessage="explanation:These question must be answer">
                                 <f:selectItem itemLabel="Yes" itemValue="Yes"/>
                                 <f:selectItem itemLabel="No" itemValue="No"/>
                             </p:selectOneRadio>
-                            
+
                             <p:outputLabel for="non_interactive" value="How do you
-                                          classify the experience of selecting
-                                          requirements using the fully automatic approach (first approach)?"/>
+                                           classify the experience of selecting
+                                           requirements using the fully automatic approach (first approach)?"/>
                             <p:selectOneRadio id="non_interactive" style="margin-bottom:10px" 
                                               layout="grid" columns="1"
                                               value="#{iNRP.exp.automaticFeedback}"
-                                              required="true">
+                                              required="true"
+                                              validatorMessage="non_interactive:These question must be answer">
                                 <f:selectItem itemLabel="very unsatisfactory" itemValue="very unsatisfactory"/>
                                 <f:selectItem itemLabel="unsatisfactory" itemValue="unsatisfactory"/>
                                 <f:selectItem itemLabel="neutral" itemValue="neutral"/>
                                 <f:selectItem itemLabel="satisfactory" itemValue="satisfactory"/>
                                 <f:selectItem itemLabel="very satisfactory" itemValue="very satisfactory"/>
                             </p:selectOneRadio>
-                            
+
                             <p:outputLabel for="interactive" value="How do you
-                                          classify the experience of selecting
-                                          requirements using interactive optimization (second approach)?" />
+                                           classify the experience of selecting
+                                           requirements using interactive optimization (second approach)?" />
                             <p:selectOneRadio id="interactive" style="margin-bottom:10px"
                                               layout="grid" columns="1" required="true"
-                                              value="#{iNRP.exp.interactiveFeedback}">
+                                              value="#{iNRP.exp.interactiveFeedback}"
+                                              validatorMessage="interactive:These question must be answer">
                                 <f:selectItem itemLabel="very unsatisfactory" itemValue="very unsatisfactory"/>
                                 <f:selectItem itemLabel="unsatisfactory" itemValue="unsatisfactory"/>
                                 <f:selectItem itemLabel="neutral" itemValue="neutral"/>
                                 <f:selectItem itemLabel="satisfactory" itemValue="satisfactory"/>
                                 <f:selectItem itemLabel="very satisfactory" itemValue="very satisfactory"/>
-                                
+
                             </p:selectOneRadio>
-                            
+
                             <p:outputLabel for="non_interactive_work" value="Would you use the fully automatic
                                            approach in your work enviroment to select requirements 
                                            to a next relase planning?"/>
                             <p:selectOneRadio id="non_interactive_work" style="margin-bottom:10px"
                                               layout="grid" columns="1" required="true"
-                                              value="#{iNRP.exp.automaticInWorkFeedback}">
+                                              value="#{iNRP.exp.automaticInWorkFeedback}"
+                                              validatorMessage="non_interactive_work:These question must be answer">
                                 <f:selectItem itemLabel="definitely" itemValue="definitely"/>
                                 <f:selectItem itemLabel="probably" itemValue="probably"/>
                                 <f:selectItem itemLabel="maybe" itemValue="maybe"/>
                                 <f:selectItem itemLabel="probably not" itemValue="probably not"/>
                                 <f:selectItem itemLabel="definitely not" itemValue="definitely not"/>
                             </p:selectOneRadio>
-                            
+
                             <p:outputLabel for="interactive_work" value="Would you use the interactive approach
                                            in your work enviroment to a next relase planning?"/>
                             <p:selectOneRadio id="interactive_work" style="margin-bottom:10px" 
                                               layout="grid" columns="1" required="true"
-                                              value="#{iNRP.exp.interactiveInWorkFeedback}">
+                                              value="#{iNRP.exp.interactiveInWorkFeedback}"
+                                              validatorMessage="interactive_work:These question must be answer">
                                 <f:selectItem itemLabel="definitely" itemValue="definitely"/>
                                 <f:selectItem itemLabel="probably" itemValue="probably"/>
                                 <f:selectItem itemLabel="maybe" itemValue="maybe"/>

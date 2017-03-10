@@ -13,21 +13,31 @@
                 <h:form>
                     <h:panelGrid columns="5" style="width: 100%">
                         <p:commandLink value="Home" action="/restricted/index.xhtml?faces-redirect=true"
-                                         style="text-decoration: none"/>
-                        
+                                       style="text-decoration: none"/>
+
                         <span class="ui-separator">
                             <span class="ui-icon ui-icon-grip-dotted-vertical" />
                         </span>
                         <p:commandLink value="Account" action= "#{redirectPage.redirectAccount()}" ajax="false" style="text-decoration:none;"/>   
                     </h:panelGrid>
 
-                    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
-                    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" 
-                              showHeader="false" style="background: transparent; border: none;">
-                        <h:graphicImage url="/resources/images/loading.svg" 
-                                        style="border:0; background: transparent; border-image: none"/>
-                        
-                    </p:dialog>
+                    <!--<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />-->
+
+                   
+
+
+
+                    <!--                    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" 
+                                                  showHeader="false" style="background-color: transparent">
+                                            
+                                             <div style="border: 0; width: 120px; height: 120px; background: url(#{resource['images/loading.svg']}); background-color: transparent"/>
+                                            
+                                            <div class="ui-g-6 ui-md-3"><p:graphicImage name="/resources/images/loading.svg" style="width:100%"/></div> 
+                                            
+                                            <h:graphicImage url="/resources/images/loading.svg" 
+                                                            />
+                                            
+                                        </p:dialog>-->
 
                 </h:form>
             </f:facet>

@@ -134,7 +134,7 @@ public class INRP implements Serializable {
 
         Problem problem;
 
-        if ((user.getId() % 2) == 0) {
+        if ((user.getId() % 2) == 0) {         
             problem = new NextReleaseProblem("Binary", 50);
         } else {
             problem = new NextReleaseProblem("Binary", dataset, 50);
@@ -222,11 +222,21 @@ public class INRP implements Serializable {
         try {
             for (int i = 0; i < 100; i++) {
                 do {
-                    newIndividual = new Solution(problem);
-                    problem.evaluate(newIndividual);
-                } while (newIndividual.getObjective(1) > problem.getBudget());
+                    newIndividual = new Solution(problem); 
+                    problem.repare(newIndividual);
+                    System.out.println(problem.evaluateCost(newIndividual));
+                } while (problem.evaluateCost(newIndividual) > problem.getBudget());  
+                System.out.println("passou");
                 populationInit.add(newIndividual);
             }
+            
+            problem.getMaxScore(populationInit);
+            problem.getMaxShe(populationInit);
+            
+            for (int i = 0; i < 100; i++) {
+                problem.evaluate(populationInit.get(i));
+            }
+            
         } catch (JMException | ClassNotFoundException ex) {
             Logger.getLogger(INRP.class.getName()).log(Level.SEVERE, null, ex);
         }

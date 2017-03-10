@@ -9,11 +9,13 @@ import br.uece.goes.model.ObjectDAO;
 import br.uece.goes.model.Requirement;
 import br.uece.goes.util.DataSet;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jmetal.core.Problem;
 import jmetal.core.Solution;
 import jmetal.core.SolutionSet;
+import jmetal.core.Variable;
 import jmetal.encodings.solutionType.BinarySolutionType;
 import jmetal.encodings.variable.Binary;
 import jmetal.util.JMException;
@@ -46,7 +48,7 @@ public class NextReleaseProblem extends Problem {
         for (int i = 0; i < numberOfBits; i++) {
             budget += reqList.get(i).getCost();
         }
-        budget = (budget * 0.4);
+        budget = (budget * 0.1);
 
         length_ = new int[numberOfVariables_];
         length_[0] = numberOfBits;
@@ -75,7 +77,7 @@ public class NextReleaseProblem extends Problem {
             for (int i = 0; i < numberOfBits; i++) {
                 budget += reqList.get(i).getCost();
             }
-            budget = (budget * 0.4);
+            budget = (budget * 0.1);
 
             length_ = new int[numberOfVariables_];
             length_[0] = numberOfBits;
@@ -105,10 +107,13 @@ public class NextReleaseProblem extends Problem {
             System.out.println("valor de She: " + she);
         }
 
-        System.out.println("MaxScore: " + maxScore);
-        System.out.println("MaxShe: " + maxShe);
-        
+        //System.out.println("MaxScore: " + maxScore);
+        //System.out.println("MaxShe: " + maxShe);
         double fitness = parameters[0] * (score / maxScore) + parameters[1] * (she / maxShe);
+
+        System.out.println("fitness: " + fitness);
+        System.out.println("cost: " + cost);
+        System.out.println("budget: " + budget);
 
         // NRP is a maximization problem: multiply by -1 to minimize
         if (cost <= budget) {
@@ -209,6 +214,35 @@ public class NextReleaseProblem extends Problem {
             }
 
         }
+
+    }
+
+    
+    //não está completo
+    public void repare(Solution solution) {
+
+        Binary variable = ((Binary) solution.getDecisionVariables()[0]);
+        Random random = new Random();
+        double cost = evaluateCost(solution);
+        //double score = solution.getObjective(0);
+        //double cost = solution.getObjective(1);
+
+        while (cost > budget) {
+            int x = random.nextInt(reqList.size());
+            if (variable.bits_.get(x)) {
+                variable.setIth(x, false);
+                cost = cost - reqList.get(x).getCost();
+                //score = score - (reqList.get(x).getImportance()/maxScore);
+            }
+        }
+        
+        Variable var[] = new Variable[numberOfVariables_];
+        var[0] = variable;
+
+        solution.setDecisionVariables(var);
+        //solution.setObjective(0, score);
+        //solution.setObjective(1, cost);
+        
 
     }
 

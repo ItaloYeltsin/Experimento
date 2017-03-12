@@ -20,19 +20,20 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class Register {
-    
-        private String name;
-        private String email;
-        private String password;
-        private User user;
-        private String educationLevel;
-        private String profession;
-        private int expTime;
-        private String tIExpClassif;
-        private String rpClassif;
-        
-        private ObjectDAO dao;
-    
+
+    private String name;
+    private String email;
+    private String password;
+    private User user;
+    private String educationLevel;
+    private String profession;
+    private int expTime;
+    private String tIExpClassif;
+    private String rpClassif;
+    private boolean terms;
+
+    private ObjectDAO dao;
+
     public Register() {
         dao = ObjectDAO.getInstance();
     }
@@ -44,7 +45,6 @@ public class Register {
     public void setTIExpClassif(String tIExpClassif) {
         this.tIExpClassif = tIExpClassif;
     }
-    
 
     public String getEducationLevel() {
         return educationLevel;
@@ -70,7 +70,6 @@ public class Register {
         this.expTime = expTime;
     }
 
-
     public String getRpClassif() {
         return rpClassif;
     }
@@ -79,7 +78,6 @@ public class Register {
         this.rpClassif = rpClassif;
     }
 
-    
     public User getUser() {
         return user;
     }
@@ -95,16 +93,15 @@ public class Register {
     public void setDao(ObjectDAO dao) {
         this.dao = dao;
     }
-    
-   public String getName() {
+
+    public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
     public String getEmail() {
         return email;
     }
@@ -120,36 +117,54 @@ public class Register {
     public void setPassword(String password) {
         this.password = password;
     }
-        
-    
-    
-    public String save(){
 
-        user = dao.getUser(email, TransformaStringMD5.md5(password));
-    
-        if(user == null){      
-            user = new User();
-            user.setName(name);
-            user.setEmail(email);
-            user.setPassword(TransformaStringMD5.md5(password));
-            user.setEducationLevel(educationLevel);
-            user.setProfession(profession);
-            user.setExpTime(expTime);
-            user.setRpClassif(rpClassif);
-            user.settIExpClassif(tIExpClassif);
-            dao.save(this.user); 
-            FacesMessage fm = new FacesMessage("User successfully registred!"); 
-            fm.setSeverity(FacesMessage.SEVERITY_INFO);
-            FacesContext.getCurrentInstance().addMessage("Successful registration", fm);
-        } else {    
-            FacesMessage fm = new FacesMessage("Someone already has that username."); 
-            fm.setSeverity(FacesMessage.SEVERITY_ERROR);
-            FacesContext.getCurrentInstance().addMessage("Someone already has that username.", fm);
-           return "";
-        }
+    public boolean isTerms() {
+        return terms;
+    }
 
-    return "/index.xhtml";
-    
+    public void setTerms(boolean terms) {
+        this.terms = terms;
     }
     
+    
+
+    public String save() {
+
+        System.out.println(terms);
+        
+        if (terms) {
+
+            user = dao.getUser(email, TransformaStringMD5.md5(password));
+
+            if (user == null) {
+                user = new User();
+                user.setName(name);
+                user.setEmail(email);
+                user.setPassword(TransformaStringMD5.md5(password));
+                user.setEducationLevel(educationLevel);
+                user.setProfession(profession);
+                user.setExpTime(expTime);
+                user.setRpClassif(rpClassif);
+                user.settIExpClassif(tIExpClassif);
+                dao.save(this.user);
+                FacesMessage fm = new FacesMessage("User successfully registred!");
+                fm.setSeverity(FacesMessage.SEVERITY_INFO);
+                FacesContext.getCurrentInstance().addMessage("Successful registration", fm);
+            } else {
+                FacesMessage fm = new FacesMessage("Someone already has that username.");
+                fm.setSeverity(FacesMessage.SEVERITY_ERROR);
+                FacesContext.getCurrentInstance().addMessage("Someone already has that username.", fm);
+                return "";
+            }
+        }else{
+            FacesMessage fm = new FacesMessage("Please mark the terms and coditions"); 
+            fm.setSeverity(FacesMessage.SEVERITY_ERROR);
+            FacesContext.getCurrentInstance().addMessage("terms", fm);
+            return "/register.xhtml";
+        }
+
+        return "/index.xhtml";
+
+    }
+
 }

@@ -16,9 +16,10 @@
 
             <ui:define name="content">
                 <h:form>                 
-                    <p:panel header="FeedBack">
-                        <p:messages id="msgs" />
+                    <p:panel header="FeedBack" id="panel">
                         <h:panelGrid columns="1" style="padding: 20px">
+
+                            <p:message for="explanation" />
                             <p:outputLabel for="explanation" value="Were the explanations about the experiment enough?"/>
                             <p:selectOneRadio id="explanation" style="margin-bottom:10px"
                                               layout="grid" columns="1" required="true"
@@ -28,6 +29,7 @@
                                 <f:selectItem itemLabel="No" itemValue="No"/>
                             </p:selectOneRadio>
 
+                            <p:message for="non_interactive" />
                             <p:outputLabel for="non_interactive" value="How do you
                                            classify the experience of selecting
                                            requirements using the fully automatic approach (first approach)?"/>
@@ -43,6 +45,7 @@
                                 <f:selectItem itemLabel="very satisfactory" itemValue="very satisfactory"/>
                             </p:selectOneRadio>
 
+                            <p:message for="interactive" />
                             <p:outputLabel for="interactive" value="How do you
                                            classify the experience of selecting
                                            requirements using interactive optimization (second approach)?" />
@@ -58,6 +61,7 @@
 
                             </p:selectOneRadio>
 
+                            <p:message for="non_interactive_work" />
                             <p:outputLabel for="non_interactive_work" value="Would you use the fully automatic
                                            approach in your work enviroment to select requirements 
                                            to a next relase planning?"/>
@@ -72,6 +76,7 @@
                                 <f:selectItem itemLabel="definitely not" itemValue="definitely not"/>
                             </p:selectOneRadio>
 
+                            <p:message for="interactive_work" />
                             <p:outputLabel for="interactive_work" value="Would you use the interactive approach
                                            in your work enviroment to a next relase planning?"/>
                             <p:selectOneRadio id="interactive_work" style="margin-bottom:10px" 
@@ -84,7 +89,9 @@
                                 <f:selectItem itemLabel="probably not" itemValue="probably not"/>
                                 <f:selectItem itemLabel="definitely not" itemValue="definitely not"/>
                             </p:selectOneRadio>
-                            <p:commandButton value="Done" action="#{iNRP.end(login.user)}"/>
+
+
+                            <p:commandButton value="Done" action="#{iNRP.end(login.user)}" update="panel"/>
                         </h:panelGrid>
                     </p:panel>
                 </h:form>

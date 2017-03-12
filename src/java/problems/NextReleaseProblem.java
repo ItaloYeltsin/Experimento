@@ -48,7 +48,7 @@ public class NextReleaseProblem extends Problem {
         for (int i = 0; i < numberOfBits; i++) {
             budget += reqList.get(i).getCost();
         }
-        budget = (budget * 0.1);
+        budget = (budget * 0.4);
 
         length_ = new int[numberOfVariables_];
         length_[0] = numberOfBits;
@@ -77,7 +77,7 @@ public class NextReleaseProblem extends Problem {
             for (int i = 0; i < numberOfBits; i++) {
                 budget += reqList.get(i).getCost();
             }
-            budget = (budget * 0.1);
+            budget = (budget * 0.4);
 
             length_ = new int[numberOfVariables_];
             length_[0] = numberOfBits;

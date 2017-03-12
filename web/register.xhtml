@@ -13,31 +13,41 @@
         <h:form>
             <p:panel id="panel" header="Register" style="margin: auto; width: 500px; left: -12.516px; top: 191px;">
 
-                <p:messages id="msgs" />
-
+                <p:messages for="name"/>
                 <h:panelGrid columns="2" cellpadding="5" columnClasses="forty-percent top-alignment, sixty-percent">
-                    
+
                     <p:outputLabel for="name" value="Name:" />
                     <p:inputText id="name" value="#{register.name}" required="true"
                                  label="Name" style="width: 100%"/>
-                    
+
+                </h:panelGrid>
+
+                <p:messages for="email"/>
+                <h:panelGrid columns="2" cellpadding="5" columnClasses="forty-percent top-alignment, sixty-percent">
                     <p:outputLabel for="email" value="Email:" />
                     <p:inputText id="email" value="#{register.email}" required="true"
                                  label="Email" validatorMessage="Invalid email format" 
                                  style="width: 100%">
-                    <f:validateRegex 
-                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"
-                        />
+                        <f:validateRegex 
+                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"
+                            />
                     </p:inputText>
-                   
+                </h:panelGrid>
+
+                <p:messages for="password"/>
+                <h:panelGrid columns="2" cellpadding="5" columnClasses="forty-percent top-alignment, sixty-percent">
                     <p:outputLabel for="password" value="Password:" />
                     <p:password id="password" value="#{register.password}" match="confirmPassword"
                                 required="true" label="password"
-                     validatorMessage="These passwords don't match. Try again?"/>
-                    
+                                validatorMessage="These passwords don't match. Try again?"/>
                     <p:outputLabel for="confirmPassword" value="Confirm Password:" />
                     <p:password id="confirmPassword" required="true" label="confirmPassword" />
-                    <p:separator/> <p:separator />
+                </h:panelGrid> 
+
+                <p:separator/> <p:separator />
+
+                <p:messages for="educationLevel"/>
+                <h:panelGrid columns="2" cellpadding="5" columnClasses="forty-percent top-alignment, sixty-percent">   
                     <p:outputLabel for="educationLevel" value="Which is your qualification level?" />
                     <p:selectOneRadio id="educationLevel" value="#{register.educationLevel}"
                                       layout="grid" columns="1" required="true">
@@ -46,15 +56,34 @@
                         <f:selectItem itemLabel="Graduate" itemValue="Graduate"/>
                         <f:selectItem itemLabel="Postgraduate" itemValue="Postgraduate"/>
                     </p:selectOneRadio>
-                    <p:separator /><p:separator />
+                </h:panelGrid> 
+
+                <p:separator /><p:separator />
+
+                <p:messages for="profession"/>
+                <h:panelGrid columns="2" cellpadding="5" columnClasses="forty-percent top-alignment, sixty-percent">   
                     <p:outputLabel for="profession" value="Which is your profession?" />
                     <p:inputText id="profession" value="#{register.profession}" style="width: 100%"
-                                 required="true"/>
-                    <p:separator /><p:separator />
+                                 required="true" validatorMessage="Only letters">
+                    <f:validateRegex 
+                            pattern="^[A-Za-z( )]*$"
+                            />
+                    </p:inputText>
+                </h:panelGrid>
+
+                <p:separator /><p:separator />
+
+                <p:messages for="tIExpTime"/>
+                <h:panelGrid columns="2" cellpadding="5" columnClasses="forty-percent top-alignment, sixty-percent">  
                     <p:outputLabel for="tIExpTime" value="How much experience do you have in IT (years)?" />
                     <p:inputMask id="tIExpTime"  mask="99" value="#{register.expTime}" style="width: 50px"
                                  required="true"/>
-                    <p:separator /><p:separator />
+                </h:panelGrid>
+
+                <p:separator /><p:separator />
+
+                <p:messages for="tIExpectClassif"/>                
+                <h:panelGrid columns="2" cellpadding="5" columnClasses="forty-percent top-alignment, sixty-percent">
                     <p:outputLabel for="tIExpectClassif" value="How do you classify your experience in software development?" />
                     <p:selectOneRadio id="tIExpectClassif" value="#{register.TIExpClassif}"
                                       layout="grid" columns="1" required="true">
@@ -62,7 +91,12 @@
                         <f:selectItem itemLabel="Medium" itemValue="Medium"/>
                         <f:selectItem itemLabel="Low" itemValue="Low"/>
                     </p:selectOneRadio>
-                    <p:separator /><p:separator />
+                </h:panelGrid>
+
+                <p:separator /><p:separator />
+
+                <p:messages for="rpClassif"/> 
+                <h:panelGrid columns="2" cellpadding="5" columnClasses="forty-percent top-alignment, sixty-percent">
                     <p:outputLabel for="rpClassif"  
                                    value="How do you classify your experiece in release planning?" />
                     <p:selectOneRadio id="rpClassif" value="#{register.rpClassif}"
@@ -71,19 +105,72 @@
                         <f:selectItem itemLabel="Medium" itemValue="Medium"/>
                         <f:selectItem itemLabel="Low" itemValue="Low"/>
                     </p:selectOneRadio>
-                    
+
                 </h:panelGrid>
-                
+
+                <p:separator /><p:separator />
+
+                <div align="left">
+                    <p:messages for="terms"/> 
+                    <h:panelGrid columns="3" style="width:0%" cellspacing="0"> 
+                        <p:selectBooleanCheckbox id="term" value="#{register.terms}" required="true" style="width:25px" />
+                        <h:panelGrid columns="2" style="width: 0%" cellspacing="0">  
+                            I accept <p:commandLink value="terms and conditions: "  style="color: blue" type="button" onclick="PF('dlg2').show();" />
+                        </h:panelGrid>
+
+                    </h:panelGrid>
+                </div>
+
                 <h:panelGrid columns="2" style="width: 100%" cellspacing="10">
+
+                    <p:commandButton id="save" value="Save" style="width: 100%" action= "#{register.save()}"
+                                     update="panel" />
+
+
                     <p:commandButton value="Cancel" style="width: 100%" 
                                      action= "index.xhtml?faces-redirect=true" 
                                      update="panel" immediate="true"/>
-                    <p:commandButton value="Save" style="width: 100%" action= "#{register.save()}"
-                                     update="panel" />
-                    
-                    
+
+
                 </h:panelGrid>
-                
+
+                <p:dialog header="TERMS AND CONDITIONS " widgetVar="dlg2" modal="true" resizable="false" style="margin: auto; width: 500px; left: -12.516px; top: 191px;">
+                    <p>
+                         I authorize the State University of Ceara (UECE), through the students Allex de Paula Araújo, Italo Yeltsin Medeiros Bruno and Raphael Saraiva Lima which are oriented by the Professor Adviser Ph.D. 
+                         Jerffeson Teixeira de Souza, to use the information I will provide to develop the research described as follows:
+                    </p>
+                    <p>
+                        1) Proceedings description: Applying questionnaires and performing on online tests.
+                    </p>
+                    <p>
+                        2) Expected risks: None. I was well informed about the risks, however, 
+                        the researchers are responsible for any ones that may occur during the research execution.
+                    </p>
+                    <p>
+                        3) Expected benefits: Providing a commercial and/or academic tool for 
+                        requirements selection to next release that is able to incorporate human subjectivity during the automation process. 
+                    </p>
+                    <p>
+                        4) Information: For the participants will be granted that they will receive answers for any question or doubt about subjects related to the research. 
+                        In addition, the researchers assume the responsibility of providing any information obtained during the study execution.
+                    </p>
+                    <p>
+                        5) Withdrawing consent: The volunteer is free to withdraw its consent at any moment and leave the study participation.
+                    </p>
+                    <p>
+                        6) Legal Aspect: Elaborated according to standards and guidelines that regulate research involving human 
+                        beings It complies the 196 resolution, October 10th, 1996 of the National Council of Ministry Health - Brasília - DF.
+                    </p>
+                    <p>
+                        7) Reliability: The volunteers have the privacy right. The identity (name and last name) of the participant will not be divulged, 
+                        however, the volunteers agree with having the obtained results presented in scientific events and publications.
+                    </p>
+                    <p>
+                        8) Indemnity: There are no predictable damages that may occur during the experiment execution, 
+                        even though, the volunteer will receive a restitution if it is necessary. 
+                    </p>
+                </p:dialog>
+
             </p:panel>
 
         </h:form>

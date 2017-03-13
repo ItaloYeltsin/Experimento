@@ -65,7 +65,7 @@
                     <p:outputLabel for="profession" value="Which is your profession?" />
                     <p:inputText id="profession" value="#{register.profession}" style="width: 100%"
                                  required="true" validatorMessage="Only letters">
-                    <f:validateRegex 
+                        <f:validateRegex 
                             pattern="^[A-Za-z( )]*$"
                             />
                     </p:inputText>
@@ -76,8 +76,9 @@
                 <p:messages for="tIExpTime"/>
                 <h:panelGrid columns="2" cellpadding="5" columnClasses="forty-percent top-alignment, sixty-percent">  
                     <p:outputLabel for="tIExpTime" value="How much experience do you have in IT (years)?" />
-                    <p:inputMask id="tIExpTime"  mask="99" value="#{register.expTime}" style="width: 50px"
-                                 required="true"/>
+                    <p:inputText id="tIExpTime"  value="#{register.expTime}" style="width: 50px"
+                                 required="true">
+                        </p:inputText>
                 </h:panelGrid>
 
                 <p:separator /><p:separator />
@@ -136,8 +137,8 @@
 
                 <p:dialog header="TERMS AND CONDITIONS " widgetVar="dlg2" modal="true" resizable="false" style="margin: auto; width: 500px; left: -12.516px; top: 191px;">
                     <p>
-                         I authorize the State University of Ceara (UECE), through the students Allex de Paula Araújo, Italo Yeltsin Medeiros Bruno and Raphael Saraiva Lima which are oriented by the Professor Adviser Ph.D. 
-                         Jerffeson Teixeira de Souza, to use the information I will provide to develop the research described as follows:
+                        I authorize the State University of Ceara (UECE), through the students Allex de Paula Araújo, Italo Yeltsin Medeiros Bruno and Raphael Saraiva Lima which are oriented by the Professor Adviser Ph.D. 
+                        Jerffeson Teixeira de Souza, to use the information I will provide to develop the research described as follows:
                     </p>
                     <p>
                         1) Proceedings description: Applying questionnaires and performing on online tests.

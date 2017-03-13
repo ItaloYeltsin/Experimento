@@ -6,10 +6,12 @@
 package br.uece.goes.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -20,7 +22,9 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "user_id_seq")
+    @Column(name = "id")
     private Long id;
     private String email;
     private String password;

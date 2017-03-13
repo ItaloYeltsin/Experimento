@@ -12,6 +12,7 @@ import br.uece.goes.model.User;
 import br.uece.goes.util.DataSet;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -67,6 +68,7 @@ public class INRP implements Serializable {
             exp.setUserId(user.getId());
             exp.setNonInterativeEvaluation(-1);
             exp.setInterativeEvaluation(-1);
+            exp.setBeginDate(new Date());
             exp.setStep(1);
             dao.save(exp);
         } else {
@@ -162,6 +164,7 @@ public class INRP implements Serializable {
             exp = dao.getExperiment(user.getId());
         }
         exp.setStep(4);
+        exp.setEndDate(new Date());
         dao.update(exp);
         return "thanks.xhtml";
     }

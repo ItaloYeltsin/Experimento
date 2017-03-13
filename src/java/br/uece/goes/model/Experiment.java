@@ -6,11 +6,14 @@
 package br.uece.goes.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -21,7 +24,9 @@ public class Experiment implements Serializable {
     
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "experiment_id_seq", sequenceName = "experiment_id_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "experiment_id_seq")
+    @Column(name = "id")
     private Long id;
     private Long userId;
     private int nonInterativeEvaluation;
@@ -32,6 +37,8 @@ public class Experiment implements Serializable {
     private String automaticInWorkFeedback;
     private String interactiveFeedback;
     private String interactiveInWorkFeedback;
+    private Date beginDate;
+    private Date endDate;
 
     public Long getId() {
         return id;
@@ -72,8 +79,23 @@ public class Experiment implements Serializable {
     public void setStep(int step) {
         this.step = step;
     }
-    
 
+    public Date getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;

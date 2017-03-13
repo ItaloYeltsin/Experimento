@@ -6,10 +6,12 @@
 package br.uece.goes.model;
 
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -19,7 +21,9 @@ import javax.persistence.Id;
 public class Requirement {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "requirement_id_seq", sequenceName = "requirement_id_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "requirement_id_seq")
+    @Column(name = "id")
     private Integer id;
     private String Description;
     private Double Importance;

@@ -7,38 +7,192 @@
       xmlns:f="http://java.sun.com/jsf/core"         
       >      
     <h:head>
-        <title>Main</title>
+        <title>Experiment Explanation</title>
     </h:head>
 
     <h:body>
 
         <ui:composition template="/restricted/layout/layout.xhtml">
+            <ui:define name="head">
+                <style>
+                    li{
+                    background-repeat: no-repeat;
+                    background-position: 100% .4em;
+                    padding-right: .6em;
+                    margin: 1em 0;
+                    }
+                </style>
+            </ui:define>
             <ui:define name="content">
 
-                <p:accordionPanel multiple="true" activeIndex="0,1,2">
-                    <p:tab title="Introduction" >
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <h:outputText
-                                value="The story begins as Don Vito Corleone..." />
-                        </h:panelGrid>
+                <p:accordionPanel multiple="true" activeIndex="0,1,2" style="text-align:  justify">
+                    <p:tab title="INTRODUCTION" >
+                            During an iterative and incremental software development
+                            process, there are some complex decisions to be made.
+                            Selecting which requirements will be implemented in 
+                            the next release of the system is one of them, given
+                            the high number of combinations, technical constraints,
+                            multiple objectives and different stakeholders. Given
+                            this context, the problem of maximizing the stakeholders
+                            satisfaction, while respecting a predefined budget for the
+                            release development, is called the Next Release Problem
+                            (NRP) (Bagnall et al. 2001). A stakeholder is usually 
+                            satisfied according to the requirements he/she wants
+                            the most, which are implemented in the next release.
+                            <p/>
+                            The Search Based Software Engineering (SBSE) has shown
+                            to be successful in order to solve such a problem. SBSE
+                            proposes to apply search-based algorithms, especially 
+                            metaheuristics, to solve Software Engineering problems.
+                            There are only two key ingredients to explore SBSE: 
+                            the representation of the problem and the definition
+                            of a fitness function to measure the quality of the 
+                            solutions (Harman et al. 2012).
+                            <p/>
+                            Usually, the fitness function is composed of metrics
+                            that represent quality and constraint attributes from
+                            the software asset being measured and optimized (Harman
+                            and Clark 2004). Unfortunately, sometimes these attributes
+                            may not be precisely defined in the early stages of the
+                            software life cycle, or are inherently associated with
+                            comprehension activities, which requires a human input
+                            to the assessment (Harman et al. 2012). This kind of
+                            problem can be properly handled by the Interactive 
+                            Evolutionary Computation (IEC). The IEC is supported
+                            by two key components: (i) human evaluation and (ii)
+                            computational search through bio-inspired evolutionary
+                            strategies (Takagi 1998). Interactive methods enable
+                            the Decision Maker (DM) introduces his/her subjective
+                            preferences progressively during the search process while
+                            guiding it to achieve suitable solutions according to
+                            his/her needs. Since there are several intrinsic aspects
+                            of requirements engineering which comprehension is 
+                            inherently subjective, demanding a more effective user
+                            collaboration (Harman 2007), the usage of IEC shown
+                            to be quite appropriate and promising.
+                            <p/>
+                            Therefore, this experiment employs the architecture proposed
+                            by Araújo et al. (2016) to deal with the NRP. This 
+                            architecture incorporates in a stepwise manner the DM
+                            preference during the search process through an Interactive
+                            Genetic Algorithm (IGA). This preference is gathered by
+                            a qualitative assessment provided by the DM regarding
+                            a given solution, which is formally defined as Subjective
+                            Evaluation (SE). In other words, the DM is integrated
+                            to the approach through subjectively evaluating a small
+                            set of solutions. However, to overcome the need of human
+                            intervention in all solutions generated by the IGA, a
+                            machine learning model is used to learn the user’s profile
+                            and, consequently, be able to replace him/her when 
+                            necessary alongside the IGA.
                     </p:tab>
+
+                    <p:tab title="EXPERIMENT">
+                        <b>Your Role</b><p/>
+                        You are being invited to play a role of a Decision Maker (DM) in a hypothetical company which 
+                        uses the iterative and incremental software develoment process. 
+                        Such a company is developing a Word Processor System and have four different clients,
+                        Fazlul Chowdfury, Jim Li, Rick Bertuzzi and Samantha Holmes. Since each client has different importance
+                        levels, it was defined the weight factors 9, 3, 5 e 8 to each one, respectively. 
+                        As DM, you have to plan which requirements should be implemented in the next release of this software 
+                        and you are free to define any subjective criteria to be reached by the resolution process, for instance, 
+                        deciding which requirements shown to be more strategic or urgent. In addition, it was defined a total
+                        budget amount of $568.80 to the release. 
+                        
+                        <p/>
+                        To help you with such a task, the company provided a support decision system which consists of two
+                        approaches to support requirements selection. The first one is fully automatic and called 
+                        <b>Non-Interactive Approach</b>. The other one is semi-automatic and is called <b>Interactive Approach</b>. 
+                        <p/>
+                        
+                        The <b>Non-Interactive Approach</b> employs an Genetic Algorithm to search a optimized solution. In our context, 
+                        a solution is a a set of selected requirements to be implemented in the next release. In sum, the optimization process aims at
+                        maximizing the overall clients importance as well as the release cost do not exceed the defined budget.                        
+
+                        <p/>
+                        The <b>Interactive Approach</b>, besides maximizing the overall clients importance
+                        and respecting the budget constraint, uses an <b>Interactive Genetic
+                        Algorithm</b> to incorporate your subjective preferences alongside the optimization process. Your tacit assessments
+                        are gathered through providing a subjective evaluation for each solution. This subjective evaluation is given as 
+                        a numerical range value established as a qualitative “grade” which follows a scale of 0 (very unsatisfactory) to 
+                        100 (very satisfactory). Furthermore, to overcome the need of human intervention in all evaluations, a machine learning 
+                        model is used to learn your profile and, consequently, be able to replace you when necessary to the remaining of the process.
+                        Overall, the learning process is performed by showing to you a set of at least 10 solutions that you
+                        will evaluate. The more solutions you evaluate, the better 
+                        the algorithm can incorporates your preferences. Thus, after
+                        the learning process, the algorithm might be able to return a solution
+                        based not only on the maximization of overall clients satisfaction, but also, on your 
+                        knowledge about which requirements should be selected.
+
+                        <p/><b>Word Processor System</b><p/>
+
+                        As previously mentioned, the system under development is a Word Processor. As shown
+                        in the Sheet below, this project has 4 clients, 50 requirements
+                        and a budget of $566.8 for the next release.
+                        Each client has a weight which indicates how important he/she
+                        is to the project. In addition, each client has assigned a
+                        score to each requirement that indicates how much the
+                        implementation of a requirement is important to him/her. Each
+                        requirement also has a implementation cost and a brief 
+                        description. As the budget constraint emphasize, the sum of the
+                        cost of the selected requirements to the next release can not be
+                        greater than the budget. The requirement
+                        importance values shown in the last column are calculated
+                        summing the score that each client has assigned multiplied
+                        by their weights. We consider important to highlight that both budget constraint and
+			maximization of clients satisfaction are concerns of the optimization process, in other words, you
+                        may concentrate just in the subjective evaluation. 
+                        <p/>
+                        We advise you to open, download or print  
+                        <p:link value="this sheet" target="_blank" href="https://docs.google.com/spreadsheets/d/1Wn-bihnmJq3kp6mbkqR7wCGCuxQNaLbQUN6RJ1J3NKI/edit?usp=sharing"/>
+                        in order to help you to evaluate the solutions that will
+                        be returned by both <b>Non-Interactive</b> and <b>Interactive</b> approachs.
+                        <p/>
+                        <iframe style="width: 1200px; height: 550px" src="https://docs.google.com/spreadsheets/d/1Wn-bihnmJq3kp6mbkqR7wCGCuxQNaLbQUN6RJ1J3NKI/pubhtml?gid=0&amp;single=true&amp;widget=false&amp;headers=true"></iframe>
+                        <p/>
+                        <b>Experimental Proceedings</b><p/>
+                        This experiment will follow the steps below:
+                        <p/>
+                        <div style="margin-left: 20px">
+                            <b>Step 1: </b> A screen with a brief explanation about the Non-Interactive Approach will be shown to you. After
+                            reading such an explanation, you will have to click on the <i>Run</i> to execute the process. Then, the approach will return
+                            only a solution indicated as Final Solution. Evaluate this solution setting through the slider how satisfactory
+                            is this solution to you.
+                            <p/>
+                            <b>Step 2: </b> You will see a brief explanation about the Interactive Approach. After reading it,
+                            you will have o click on <i>Run</i>. Then, you will have to evaluate at least 10 initial solutions that will be shown
+                            in sequence one by one. These evaluations will help the approach to learn your evaluation profile. After, the Stop button will be active. You can evaluate more solutions before
+                            stopping if you wish. The more you evaluate, the better the machine learning algorithm will incorporate
+                            your preferences at the final solution. After clicking on the Stop button, the Final Solution considering the Interactive Approach will be shown. This solution was
+                            built considering both overall clients satisfaction and your subjective preference. Evaluate the solution and you will
+                            be taken to the final step.
+                            <p/>
+                            <b>Step 3: </b> This is the last step and consist of filling a feedback questionnaire that contains 5
+                            multiple choice questions. Answer all question and click Done to finish the experiment execution.
+                          
+                        </div>
+                        
+                        <p/> At the end of each step the information you provided will be backed up. So if you have to stop to
+                        finish later, the experiment will begin from the step after the last one you finished.
+                        Thus, click the button bellow to begin the experiment.
+                        <p/>
+                        <p:commandButton value="Begin" action="#{iNRP.beginExperiment(login.user)}" style="align-self: flex-end"/>
+                    </p:tab>
+                    <p:tab title="REFEENCES">
+                        <ul>
+                            <li>Araújo, A.A., Paixao, M., Yeltsin, I. et al.: An Architecture based on interactive optimization and machine learning applied to the next release problem. In: Autom Softw Eng (2016). doi:10.1007/s10515-016-0200-3</li>
+                            <li>Bagnall, A.J., Rayward-Smith, V.J., Whittley, I.M.: The next release problem. Inf. Softw. Technol. 43(14), 883–890 (2001). doi:10.1016/S0950-5849(01)00194-X</li>
+                            <li>Harman, M., Clark, J.A.: Metrics are fitness functions too. In: Proceedings of the 10th IEEE International Symposium on Software Metrics (METRICS ’04), pp. 58–69. IEEE, Chicago, USA (2004). doi:10.1109/METRIC.2004.1357891</li>
+                            <li>Harman, M., McMinn, P., de Souza, J.T., Yoo, S.: Search based software engineering: techniques, taxonomy, tutorial. Empir. Softw. Eng. Verif. 7007, 1–59 (2012). doi:10.1007/978-3-642-25231-0_1</li>
+                            <li>Harman, M.: Search based software engineering for program comprehension. In: Proceedings of the 15th IEEE International Conference on Program Comprehension (ICPC ’07), pp. 3–13. IEEE, Banff, Alberta, Canada (2007). doi:10.1109/ICPC.2007.35</li>
+                            <li>Takagi, H.: Interactive evolutionary computation: System optimization based on human subjective evaluation. In: IEEE International Conference on Intelligent Engineering Systems (INES’98), pp. 17–19 (1998)</li>
+                        </ul>
+                            
                     
-                    <p:tab title="Subject System">
-                        <h:panelGrid columns="1" cellpadding="10">
-                            <h:outputText value="Francis Ford Coppola's legendary..." />
-                            <iframe style="width: 1200px; height: 550px" src="https://docs.google.com/spreadsheets/d/1Wn-bihnmJq3kp6mbkqR7wCGCuxQNaLbQUN6RJ1J3NKI/pubhtml?gid=0&amp;single=true&amp;widget=false&amp;headers=true"></iframe>
-                        </h:panelGrid>
+                        
+                        
                     </p:tab>
-                    
-                    <p:tab title="Your Role">
-                        <h:panelGrid columns="1" cellpadding="10">
-                            <p:outputLabel>
-                                C+asas=a=s=a=s salspa lspal psla pspaslpslapsp slap  salp
-                                 alsa slpa ls slapsla slapssl pa
-                            </p:outputLabel>
-                            <p:commandButton value="Begin" action="#{iNRP.beginExperiment(login.user)}" style="align-self: flex-end"/>
-                        </h:panelGrid>
-                    </p:tab>
+
                 </p:accordionPanel>
 
 

@@ -25,7 +25,7 @@ public class Experiment implements Serializable {
     
     @Id
     @SequenceGenerator(name = "experiment_id_seq", sequenceName = "experiment_id_seq")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "experiment_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "experiment_id_seq")
     @Column(name = "id")
     private Long id;
     private Long userId;

@@ -18,13 +18,16 @@
                
                 <p:messages id="msgs" />
 
-                <h:panelGrid columns="2" cellpadding="5">
+                <h:panelGrid columns="2" cellpadding="5" width="100%" style="padding-right: 20px">
                                
                     <p:outputLabel for="email" value="Email:" />
-                    <p:inputText id="email" value="#{login.email}" label="Email" validatorMessage="Invalid email format" />
+                    <p:inputText id="email" value="#{login.email}" 
+                                 style="width: 100%"
+                                 label="Email" validatorMessage="Invalid email format" />
                     
                     <p:outputLabel for="password" value="Password:" />
-                    <p:password id="password" value="#{login.password}" label="password"/>
+                    <p:password id="password" value="#{login.password}" style="width: 100%"
+                                label="password"/>
                 
                     
                 </h:panelGrid>

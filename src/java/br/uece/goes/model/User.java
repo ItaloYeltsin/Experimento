@@ -23,7 +23,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "user_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_id_seq")
     @Column(name = "id")
     private Long id;
     private String email;

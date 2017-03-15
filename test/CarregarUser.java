@@ -21,5 +21,41 @@ public class CarregarUser {
         u.setEmail("br.yeltsin@gmail.com");
         u.setPassword("123");
         dao.save(u);
+        
+        u = new User();
+        u.setName("Italo Yeltsin Medeiros Bruno");
+        u.setEmail("br.yeltsin@gmail.com");
+        u.setPassword("123");
+        dao.save(u);
+        
+        u = new User();
+        u.setName("Italo Yeltsin Medeiros Bruno");
+        u.setEmail("br.yeltsin@gmail.com");
+        u.setPassword("123");
+        dao.save(u);
+        
+        u = new User();
+        u.setName("Italo Yeltsin Medeiros Bruno");
+        u.setEmail("br.yeltsin@gmail.com");
+        u.setPassword("123");
+        dao.save(u);
+        
+        u = new User();
+        u.setName("Italo Yeltsin Medeiros Bruno");
+        u.setEmail("br.yeltsin@gmail.com");
+        u.setPassword("123");
+        dao.save(u);
+        
+        u = new User();
+        u.setName("Italo Yeltsin Medeiros Bruno");
+        u.setEmail("br.yeltsin@gmail.com");
+        u.setPassword("123");
+        dao.save(u);
+        
+        u = new User();
+        u.setName("Italo Yeltsin Medeiros Bruno");
+        u.setEmail("br.yeltsin@gmail.com");
+        u.setPassword("123");
+        dao.save(u);
     }
 }

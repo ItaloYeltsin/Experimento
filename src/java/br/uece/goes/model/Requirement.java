@@ -22,7 +22,7 @@ public class Requirement {
 
     @Id
     @SequenceGenerator(name = "requirement_id_seq", sequenceName = "requirement_id_seq")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "requirement_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "requirement_id_seq")
     @Column(name = "id")
     private Integer id;
     private String Description;

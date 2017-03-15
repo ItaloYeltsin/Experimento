@@ -19,7 +19,7 @@ public class CarregarRequirements {
         public static void main(String [] arg) {
             
             ReaderInstance instance;
-            instance = new ReaderInstance("src/instances/dataset-1.txt");                
+            instance = new ReaderInstance("src/instances/Dataset-1.txt");                
             ObjectDAO dao = ObjectDAO.getInstance();      
             String desc[] = instance.getDescription();
             double importance[] = instance.getValueReqPod();

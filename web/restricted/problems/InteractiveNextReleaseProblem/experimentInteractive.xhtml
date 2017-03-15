@@ -31,6 +31,27 @@
                         <h:outputLabel id="texto" value="Final Solution" />
                     </h:panelGrid>
                     </div>
+                    
+                    <div style="width: 100%; text-align:  left">
+
+                        <h:panelGrid id="spec" columns="3" width="0">
+                            <p:outputLabel value="Project Specification:"/>
+                            <p:link value="Pop-up" target="_blank" href="https://docs.google.com/spreadsheets/d/1Wn-bihnmJq3kp6mbkqR7wCGCuxQNaLbQUN6RJ1J3NKI/edit?usp=sharing"/>
+                            <p:lightBox id="lighbox2" >
+                                <p:link value="Modal">
+                                    <h:outputText value="Video Content" />
+                                </p:link>
+
+                                <f:facet name="inline" >
+                                    <iframe style="width: 1200px; height: 550px; border: solid;  border-color: gray;
+                                            border-style: solid; border-width: 1px; padding: 10px;" 
+                                            src="https://docs.google.com/spreadsheets/d/1Wn-bihnmJq3kp6mbkqR7wCGCuxQNaLbQUN6RJ1J3NKI/pubhtml?gid=0&amp;single=true&amp;widget=false&amp;headers=true"></iframe>
+
+                                </f:facet>
+                            </p:lightBox>
+                        </h:panelGrid>
+                    </div>
+                    
                     <h:panelGrid columns="2" id="panel" columnClasses="align-top left-table, align-top">
                         <p:dataTable disabledSelection="true" var="selectedRequirement" 
                                      value="#{iNRP.selectedRequiriments}" 

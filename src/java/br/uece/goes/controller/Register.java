@@ -129,17 +129,15 @@ public class Register {
     
 
     public String save() {
-
-        System.out.println(terms);
-        
+      
         if (terms) {
 
-            user = dao.getUser(email, TransformaStringMD5.md5(password));
+            user = dao.getUser(email.trim(), TransformaStringMD5.md5(password));
 
             if (user == null) {
                 user = new User();
                 user.setName(name);
-                user.setEmail(email);
+                user.setEmail(email.trim());
                 user.setPassword(TransformaStringMD5.md5(password));
                 user.setEducationLevel(educationLevel);
                 user.setProfession(profession);
@@ -151,13 +149,13 @@ public class Register {
                 fm.setSeverity(FacesMessage.SEVERITY_INFO);
                 FacesContext.getCurrentInstance().addMessage("Successful registration", fm);
             } else {
-                FacesMessage fm = new FacesMessage("Someone already has that username.");
+                FacesMessage fm = new FacesMessage("Someone already has this E-mail.");
                 fm.setSeverity(FacesMessage.SEVERITY_ERROR);
-                FacesContext.getCurrentInstance().addMessage("Someone already has that username.", fm);
+                FacesContext.getCurrentInstance().addMessage("email", fm);
                 return "";
             }
         }else{
-            FacesMessage fm = new FacesMessage("Please mark the terms and coditions"); 
+            FacesMessage fm = new FacesMessage("You must accept the terms and conditions"); 
             fm.setSeverity(FacesMessage.SEVERITY_ERROR);
             FacesContext.getCurrentInstance().addMessage("terms", fm);
             return "/register.xhtml";

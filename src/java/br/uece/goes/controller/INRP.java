@@ -41,6 +41,7 @@ public class INRP implements Serializable {
     private DataSet dataset;
     private List<Requirement> selectedRequiriments;
     private List<Requirement> noSelectedRequiriments;
+    private List<Requirement> allRequiriments;
     SolutionSet population;
     private ObjectDAO dao;
     private int rate;
@@ -59,6 +60,9 @@ public class INRP implements Serializable {
         dao = ObjectDAO.getInstance();
         rate = 50;
         index = 1;
+        allRequiriments = dao.getAllReq();
+        selectedRequiriments = new ArrayList<>();
+        noSelectedRequiriments = new ArrayList<>();
     }
 
     public String beginExperiment(User user) {
@@ -82,11 +86,7 @@ public class INRP implements Serializable {
 
         Problem problem = new NextReleaseProblem("Binary", 50);
         Solution solution = executeAlgorithm(problem);
-        selectedRequiriments = ConvertBiSolutionForArray(solution, dao.getAllReq());
-        noSelectedRequiriments = dao.getAllReq();
-        selectedRequiriments.stream().forEach((requirement) -> {
-            noSelectedRequiriments.remove(requirement);
-        });
+        ConvertBiSolutionForArray(solution, allRequiriments);
         etapaBeginNonInteractive = true;
         return "experimentNonInteractive.xhtml";
 
@@ -104,13 +104,11 @@ public class INRP implements Serializable {
 
         Problem problem = new NextReleaseProblem("Binary", 50);
         population = createPopulation((NextReleaseProblem) problem);
-        selectedRequiriments = ConvertBiSolutionForArray(population.get(index - 1), dao.getAllReq());
-        noSelectedRequiriments = dao.getAllReq();
-        selectedRequiriments.stream().forEach((requirement) -> {
-            noSelectedRequiriments.remove(requirement);
-        });
+        ConvertBiSolutionForArray(population.get(index - 1), allRequiriments);
         etapaBeginInteractive = true;
         index = 1;
+        stop = true;
+        dataset = new DataSet(100, 50);
         return "evaluateSolutions.xhtml";
     }
 
@@ -119,12 +117,8 @@ public class INRP implements Serializable {
             if (index == 10) {
                 stop = false;
             }
-            selectedRequiriments = ConvertBiSolutionForArray(population.get(index - 1), dao.getAllReq());
+            ConvertBiSolutionForArray(population.get(index - 1), dao.getAllReq());
             dataset.insert(population.get(index - 1), rate);
-            noSelectedRequiriments = dao.getAllReq();
-            selectedRequiriments.stream().forEach((requirement) -> {
-                noSelectedRequiriments.remove(requirement);
-            });
             index++;
         } else {
             avaliar = true;
@@ -143,10 +137,7 @@ public class INRP implements Serializable {
         }
 
         Solution solution = executeAlgorithm(problem);
-        selectedRequiriments = ConvertBiSolutionForArray(solution, dao.getAllReq());
-        selectedRequiriments.stream().forEach((requirement) -> {
-            noSelectedRequiriments.remove(requirement);
-        });
+        ConvertBiSolutionForArray(solution, allRequiriments);
         etapaEvaluateSolutions = true;
         return "experimentInteractive.xhtml";
     }
@@ -169,18 +160,20 @@ public class INRP implements Serializable {
         return "thanks.xhtml";
     }
 
-    ArrayList<Requirement> ConvertBiSolutionForArray(Solution solution, List<Requirement> Req) {
+    void ConvertBiSolutionForArray(Solution solution, List<Requirement> Req) {
 
-        ArrayList<Requirement> selReq = new ArrayList<>();
+        selectedRequiriments.clear();
+        noSelectedRequiriments.clear();
 
         Binary variable = ((Binary) solution.getDecisionVariables()[0]);
 
         for (int i = 0; i < variable.getNumberOfBits(); i++) {
             if (variable.bits_.get(i)) {
-                selReq.add(Req.get(i));
+                selectedRequiriments.add(Req.get(i));
+            }else{
+                noSelectedRequiriments.add(Req.get(i));
             }
         }
-        return selReq;
     }
 
     public Solution executeAlgorithm(Problem problem) {
@@ -227,9 +220,7 @@ public class INRP implements Serializable {
                 do {
                     newIndividual = new Solution(problem); 
                     problem.repare(newIndividual);
-                    System.out.println(problem.evaluateCost(newIndividual));
                 } while (problem.evaluateCost(newIndividual) > problem.getBudget());  
-                System.out.println("passou");
                 populationInit.add(newIndividual);
             }
             

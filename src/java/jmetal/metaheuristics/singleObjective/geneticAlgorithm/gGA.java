@@ -69,6 +69,7 @@ public class gGA extends Algorithm {
         // Initialize the variables
         population = new SolutionSet(populationSize);
         offspringPopulation = new SolutionSet(populationSize);
+        NextReleaseProblem p = (NextReleaseProblem) problem_;
 
         evaluations = 0;
 
@@ -80,24 +81,20 @@ public class gGA extends Algorithm {
         // Create the initial population
         Solution newIndividual;
         for (int i = 0; i < populationSize; i++) {
-
-            NextReleaseProblem p = (NextReleaseProblem) problem_;
-            p.getMaxScore(population);
-            p.getMaxShe(population);
-
             newIndividual = new Solution(problem_);
-            p.evaluate(newIndividual);
-            evaluations++;
             population.add(newIndividual);
-        } //for       
+        } //for      
+
+        p.getMaxScore(population);
+        p.getMaxShe(population);
+        for (int i = 0; i < populationSize; i++) {
+            p.evaluate(population.get(i));
+            evaluations++;
+        }
 
         // Sort population
         population.sort(comparator);
         while (evaluations < maxEvaluations) {
-
-            NextReleaseProblem p = (NextReleaseProblem) problem_;
-            p.getMaxScore(population);
-            p.getMaxShe(population);
 
             if ((evaluations % 10) == 0) {
                 System.out.println(evaluations + ": " + population.get(0).getObjective(0));
@@ -122,17 +119,21 @@ public class gGA extends Algorithm {
                 mutationOperator.execute(offspring[0]);
                 mutationOperator.execute(offspring[1]);
 
-                // Evaluation of the new individual
-                p.evaluate(offspring[0]);
-                p.evaluate(offspring[1]);
-
-                evaluations += 2;
-
                 // Replacement: the two new individuals are inserted in the offspring
                 //                population
                 offspringPopulation.add(offspring[0]);
                 offspringPopulation.add(offspring[1]);
             } // for
+
+            p.getMaxScore(offspringPopulation);
+            p.getMaxShe(offspringPopulation);
+
+            // Evaluation of the new individual
+            for (int i = 0; i < offspringPopulation.size(); i++) {
+                p.evaluate(offspringPopulation.get(i));
+                evaluations++;
+
+            }
 
             // The offspring population becomes the new current population
             population.clear();

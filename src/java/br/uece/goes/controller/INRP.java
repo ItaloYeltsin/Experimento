@@ -117,9 +117,9 @@ public class INRP implements Serializable {
             if (index == 10) {
                 stop = false;
             }
-            ConvertBiSolutionForArray(population.get(index - 1), dao.getAllReq());
             dataset.insert(population.get(index - 1), rate);
             index++;
+            ConvertBiSolutionForArray(population.get(index - 1), dao.getAllReq());
         } else {
             avaliar = true;
         }
